@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>C1アプリ 使い方ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F4; --surface:#FFFFFF; --ink:#14161F; --ink2:#4B5160; --muted:#8A909E;
+  --line:#E6E8EE; --line2:#EFF1F5;
+  --shadow:0 1px 2px rgba(20,22,31,.05),0 6px 20px rgba(20,22,31,.06);
+  --shadow-sm:0 1px 2px rgba(20,22,31,.06);
+  --radius:18px; --radius-sm:12px;
+  --disp:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --body:"Noto Sans JP",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg)}
+body{font-family:var(--body);color:var(--ink);line-height:1.7;
+  font-feature-settings:"palt";-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.app{max-width:468px;margin:0 auto;min-height:100dvh;background:var(--bg);
+  position:relative;overflow-x:hidden}
+@media(min-width:520px){
+  html,body{background:#DFE2E9}
+  .app{margin:22px auto;height:calc(100dvh - 44px);border-radius:30px;
+    box-shadow:0 24px 60px rgba(20,22,31,.14);overflow-y:auto;overflow-x:hidden;
+    border:1px solid #e2e4ea;scrollbar-width:thin}
+}
+
+/* accent themes */
+[data-accent="amber"]{--ac:#C9821F;--ac-soft:#FaF1E2;--ac-ink:#734711}
+[data-accent="indigo"]{--ac:#3A56C8;--ac-soft:#EBEEFB;--ac-ink:#293b8f}
+[data-accent="green"]{--ac:#2C9E68;--ac-soft:#E8F4EC;--ac-ink:#1c6642}
+[data-accent="slate"]{--ac:#586074;--ac-soft:#EDEFF3;--ac-ink:#39404f}
+[data-accent="teal"]{--ac:#0E90A0;--ac-soft:#E3F2F4;--ac-ink:#0a5a64}
+
+/* ---------- HOME ---------- */
+.home{padding:0 0 88px}
+.hero{padding:32px 22px 28px;background:linear-gradient(180deg,#171A26 0%,#1E2233 100%);color:#fff}
+.hero .eyebrow{font:500 12px/1 var(--body);letter-spacing:.14em;color:#AEB6D0;
+   text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hero .eyebrow b{color:#fff;font-weight:700;letter-spacing:.06em}
+.hero h1{font-family:var(--disp);font-weight:900;font-size:27px;line-height:1.25;letter-spacing:.01em}
+.hero p{margin-top:10px;color:#C3C9DC;font-size:13.5px;max-width:30ch}
+
+.sec-label{font:700 11.5px/1 var(--body);letter-spacing:.12em;color:var(--muted);
+   text-transform:uppercase;padding:26px 24px 12px}
+.cards{display:flex;flex-direction:column;gap:11px;padding:0 16px}
+.card{display:flex;align-items:center;gap:14px;background:var(--surface);
+   border:1px solid var(--line);border-radius:var(--radius);padding:15px 15px;
+   box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .16s ease,box-shadow .16s ease;
+   text-align:left;width:100%;font-family:inherit;color:inherit}
+.card:active{transform:scale(.985)}
+@media(hover:hover){.card:hover{box-shadow:var(--shadow);transform:translateY(-1px)}}
+.card .chip{width:46px;height:46px;flex:0 0 46px;border-radius:13px;background:var(--ac-soft);
+   display:grid;place-items:center;font-size:22px}
+.card .tx{flex:1;min-width:0}
+.card .tx h3{font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.01em}
+.card .tx small{display:block;color:var(--muted);font-size:12px;margin-top:2px;font-weight:500}
+.card .go{color:var(--ac);flex:0 0 auto;display:grid;place-items:center;width:26px;height:26px}
+.card .go svg{width:18px;height:18px}
+.card.stub{opacity:.72}
+.card.stub .badge{font-size:10px;font-weight:700;color:var(--muted);border:1px solid var(--line);
+   padding:2px 7px;border-radius:999px;margin-left:auto;white-space:nowrap}
+
+.foot{padding:26px 24px 10px;color:var(--muted);font-size:11px;text-align:center;line-height:1.6}
+
+/* ---------- DETAIL ---------- */
+.detail{display:none;animation:fade .22s ease both}
+.detail.on{display:block}
+.home.off{display:none}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:6px;
+   padding:12px 12px;background:#ffffffd8;backdrop-filter:blur(12px);
+   border-bottom:1px solid var(--line)}
+.back{display:flex;align-items:center;gap:4px;border:none;background:none;cursor:pointer;
+   font-family:inherit;color:var(--ac);font-weight:700;font-size:14px;padding:8px 8px 8px 4px;border-radius:10px}
+.back:active{background:var(--ac-soft)}
+.back svg{width:20px;height:20px}
+.crumb-back{display:flex;align-items:center;gap:3px;border:none;background:none;cursor:pointer;flex:0 0 auto;
+   font-family:inherit;color:var(--ac);font-weight:700;font-size:14px;padding:8px 6px 8px 4px;border-radius:10px}
+.crumb-back:active{background:var(--ac-soft)}
+.crumb-back svg{width:20px;height:20px}
+.crumb-sep{color:var(--muted);font-size:15px;flex:0 0 auto}
+.crumb-now{color:var(--ink);font-weight:700;font-family:var(--disp);font-size:14px;
+   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.d-head{padding:20px 22px 8px}
+.d-head .ki{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;
+   background:var(--ac-soft);font-size:22px;margin-bottom:12px}
+.d-head h2{font-family:var(--disp);font-weight:900;font-size:23px;letter-spacing:.01em}
+.d-head .sub{color:var(--muted);font-size:12.5px;font-weight:500;margin-top:3px}
+.d-body{padding:8px 16px 92px}
+.bottomnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:468px;z-index:40;
+   display:flex;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid var(--line);
+   padding:6px 0 calc(6px + env(safe-area-inset-bottom))}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;
+   cursor:pointer;font-family:inherit;color:var(--muted);padding:6px 0}
+.nav-item svg{width:23px;height:23px}
+.nav-item span{font-size:10.5px;font-weight:700;font-family:var(--body)}
+.nav-item.active{color:var(--ink)}
+.nav-item:active{opacity:.6}
+
+.lead{color:var(--ink2);font-size:14.5px;padding:8px 6px 4px;line-height:1.75}
+.grouphead{font-family:var(--disp);font-weight:800;font-size:15px;color:var(--ink);
+   margin:24px 2px 2px;display:flex;align-items:center;gap:9px}
+.grouphead::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--ac)}
+.tabwrap{position:sticky;top:51px;z-index:15;background:var(--bg);padding:10px 14px 6px}
+.tabs{display:flex;gap:5px;background:#e3e6ec;padding:4px;border-radius:12px}
+.tab{flex:1;border:none;background:none;font-family:var(--disp);font-weight:700;font-size:14px;
+   color:var(--ink2);padding:9px 0;border-radius:9px;cursor:pointer}
+.tab.on{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm)}
+.tabpanel{display:none}
+.tabpanel.on{display:block;animation:fade .18s ease both}
+
+/* accordion */
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+   margin-top:12px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.acc>summary{list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:center;gap:10px;
+   font-family:var(--disp);font-weight:700;font-size:15px}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary .dot{width:7px;height:7px;border-radius:50%;background:var(--ac);flex:0 0 auto}
+.acc>summary .cv{margin-left:auto;transition:transform .2s ease;color:var(--muted);display:grid;place-items:center}
+.acc>summary .cv svg{width:20px;height:20px}
+.acc[open]>summary .cv{transform:rotate(180deg)}
+.acc[open]>summary{border-bottom:1px solid var(--line2)}
+.acc .inner{padding:6px 16px 16px}
+
+/* rules */
+.rules{display:flex;flex-direction:column}
+.rules .row{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+   padding:11px 2px;border-bottom:1px dashed var(--line)}
+.rules .row:last-child{border-bottom:none}
+.rules .row .l{color:var(--muted);font-size:12.5px;font-weight:500;flex:0 0 auto;max-width:44%}
+.rules .row .v{color:var(--ink);font-size:14px;font-weight:700;text-align:right;font-family:var(--disp)}
+
+/* steps */
+.steps{list-style:none;counter-reset:s;margin-top:4px}
+.steps li{position:relative;padding:2px 2px 16px 40px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;
+   border-radius:50%;background:var(--ac);color:#fff;font-family:var(--disp);font-weight:700;
+   font-size:13px;display:grid;place-items:center}
+.steps.check li::before{content:"✓";font-size:14px}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:13px;top:28px;bottom:2px;
+   width:2px;background:var(--ac-soft)}
+.steps li h4{font-family:var(--disp);font-weight:700;font-size:14.5px}
+.steps li p{color:var(--ink2);font-size:13px;margin-top:2px}
+
+/* screenshot with pins */
+.shot-wrap{margin:8px auto 4px;max-width:224px}
+.shot{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);
+   box-shadow:var(--shadow);background:#fff}
+.shot img{display:block;width:100%;height:auto}
+.pin{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;
+   background:var(--ac);color:#fff;font-family:var(--disp);font-weight:700;font-size:15px;
+   display:grid;place-items:center;border:2.5px solid #fff;box-shadow:0 3px 10px rgba(0,0,0,.28);z-index:2}
+.pin::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--ac);
+   opacity:.5;animation:ping 1.9s cubic-bezier(0,0,.2,1) infinite}
+@keyframes ping{0%{transform:scale(.85);opacity:.55}70%,100%{transform:scale(1.5);opacity:0}}
+.shot-cap{text-align:center;color:var(--muted);font-size:11.5px;margin-top:8px}
+.legend{margin-top:10px;display:flex;flex-direction:column}
+.legend .li{display:flex;gap:9px;align-items:flex-start;padding:8px 2px;border-bottom:1px solid var(--line2)}
+.legend .li:last-child{border-bottom:none}
+.legend .li .num{width:20px;height:20px;flex:0 0 auto;border-radius:50%;background:var(--ac);color:#fff;
+   font-family:var(--disp);font-weight:700;font-size:11.5px;display:grid;place-items:center;margin-top:1px}
+.legend .li h4{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink)}
+.legend .li p{font-size:12px;color:var(--ink2);margin-top:1px}
+
+/* swipe carousel */
+.carousel-wrap{margin:8px 0 2px}
+.carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.carousel::-webkit-scrollbar{display:none}
+.cslide{flex:0 0 100%;scroll-snap-align:center;box-sizing:border-box}
+.cdots{display:flex;justify-content:center;gap:6px;margin-top:12px}
+.cdots .cdot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .2s,width .2s}
+.cdots .cdot.on{background:var(--ac);width:18px;border-radius:4px}
+.cswipe{text-align:center;color:var(--muted);font-size:11px;margin-top:7px;letter-spacing:.04em}
+.splash{position:fixed;inset:0;z-index:80;background:rgba(244,245,247,.94);backdrop-filter:blur(2px);
+   display:flex;align-items:center;justify-content:center}
+.splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--ink2);font-size:13px;font-weight:700}
+.splash .sp-dot{width:26px;height:26px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--ink);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* note */
+.note{display:flex;gap:10px;background:var(--ac-soft);border-radius:12px;padding:12px 14px;margin-top:12px}
+.note .i{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:var(--ac);color:#fff;
+   font-weight:700;font-size:12px;display:grid;place-items:center;margin-top:1px;font-family:var(--disp)}
+.note p{font-size:12.5px;color:var(--ac-ink);line-height:1.65}
+.note.warn{--ac:#C7502F;--ac-soft:#FBEDE8;--ac-ink:#8a3016}
+
+/* sticky jump chips */
+.jump{position:sticky;top:51px;z-index:15;display:flex;gap:7px;overflow-x:auto;
+   padding:10px 16px;background:rgba(238,240,244,.88);backdrop-filter:blur(10px);
+   border-bottom:1px solid var(--line);scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--ink2);
+   font-family:inherit;font-size:12.5px;font-weight:700;padding:6px 13px;border-radius:999px;cursor:pointer;flex:0 0 auto}
+.jump button:active{background:var(--ac-soft);color:var(--ac-ink);border-color:var(--ac)}
+.acc{scroll-margin-top:106px}
+
+/* install link button & QR */
+.linkbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+   background:var(--ac);color:#fff;font-family:var(--disp);font-weight:700;font-size:14.5px;
+   padding:14px 16px;border-radius:12px;text-decoration:none;margin:12px 0 4px;box-shadow:var(--shadow-sm)}
+.linkbtn:active{opacity:.9}
+.linkbtn svg{width:17px;height:17px}
+.qrbox{display:flex;flex-direction:column;align-items:center;gap:8px;margin:12px 0 4px}
+.qrbox img{width:190px;height:190px;background:#fff;padding:10px;border-radius:12px;border:1px solid var(--line)}
+.qrbox small{color:var(--muted);font-size:11.5px;text-align:center;max-width:26ch}
+
+/* search */
+.search-trigger{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:calc(100% - 32px);margin:14px 16px 2px;
+   background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:13px 15px;
+   cursor:pointer;box-shadow:var(--shadow-sm);font-family:inherit;text-align:left}
+.search-trigger:active{background:var(--line2)}
+.search-trigger .mag{color:var(--muted);display:grid;place-items:center}
+.search-trigger .mag svg{width:19px;height:19px}
+.search-trigger .ph{flex:1;min-width:0;color:var(--muted);font-size:14px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search{position:fixed;inset:0;z-index:60;background:var(--bg);display:none;flex-direction:column}
+.search.on{display:flex;animation:fade .16s ease both}
+@media(min-width:520px){.search{position:absolute}}
+.search-bar{display:flex;align-items:center;gap:9px;padding:14px 14px;background:var(--surface);border-bottom:1px solid var(--line)}
+.search-bar .mag{color:var(--muted);display:grid;place-items:center}
+.search-bar .mag svg{width:19px;height:19px}
+.search-bar input{flex:1;min-width:0;border:none;outline:none;font-family:inherit;font-size:16px;background:none;color:var(--ink)}
+.search-bar button{border:none;background:none;color:#3A56C8;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
+.search-results{flex:1;overflow-y:auto;padding:6px 14px 40px}
+.search-hint{color:var(--muted);font-size:13px;text-align:center;padding:34px 20px;line-height:1.7}
+.sr{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;background:var(--surface);
+   border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:8px;cursor:pointer;font-family:inherit;color:inherit}
+.sr:active{background:var(--ac-soft)}
+.sr .ic{width:34px;height:34px;flex:0 0 auto;border-radius:9px;background:var(--ac-soft);display:grid;place-items:center;font-size:17px}
+.sr .tx{min-width:0;flex:1}
+.sr .tx .path{color:var(--ac);font-size:12px;font-weight:700;font-family:var(--disp);display:block}
+.sr .tx .snip{color:var(--ink2);font-size:12px;margin-top:2px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+/* ============================================================
+   ▼▼▼ ここが「中身」データです。ここだけ書き換えれば全ページに反映されます ▼▼▼
+   デザイン・ボタンの仕組み（上のCSS/下のJS）は触らなくてOK。
+   ・スクショ：img に画像URL（本番は画像フォルダのパス）
+   ・ピン：x,y は画像に対する％（左上が0,0 / 右下が100,100）
+   ============================================================ */
+const IMG = {
+  urlReport: "images/url-report.jpg",         // 投稿動画共有（URL報告）
+  myPage: "images/mypage.jpg",          // マイページ
+  ptScreen: "images/point-screen.jpg",        // ポイント画面
+  ptExchangeAmazon: "images/exchange-amazon.jpg",// Amazonギフト券交換
+  ptPromote: "images/promote.jpg",       // TikTokプロモート代行
+  ptHistory: "images/history.jpg",       // ポイント履歴
+  qrIos: "images/qr-ios.png",             // iOS App Store QR
+  qrAnd: "images/qr-android.png",             // Android Play Store QR
+  login: "images/login.jpg",           // ログイン画面
+  editDash: "images/edit-dashboard.jpg",     // ダッシュボード（新規タスク）
+  editRequest: "images/edit-request.jpg",   // 新規リクエスト（動画アップロード）
+  editUpload: "images/edit-upload.jpg",     // 動画のアップロード
+  editProgress: "images/edit-progress.jpg",  // 制作中の動画（進捗）
+  editDone: "images/edit-done.jpg",      // 完了ステータス
+  ptRanking: "images/point-ranking.jpg",       // ポイントランキング
+  currLevels: "images/curr-levels.jpg",      // 技術カリキュラム レベル一覧
+  currList: "images/curr-list.jpg",      // 入門レベル 実施画面
+  currVideo: "images/curr-video.jpg",      // 動画視聴
+  currVideoFull: "images/curr-video-full.jpg", // 動画 全画面
+  currQuiz: "images/curr-quiz.jpg",      // クイズ
+  currQuizAns: "images/curr-quiz-ans.jpg",  // クイズ 正誤
+  currKarte: "images/curr-karte.jpg",    // 技術カルテ
+  taskSubmit: "images/task-submit.jpg",     // 課題提出画面
+  taskPicker: "images/task-picker.jpg",    // ファイル選択（モザイク）
+  taskFiles: "images/task-files.jpg",    // 課題提出（添付後）
+  promo1: "images/promo-1.jpg", promo2: "images/promo-2.jpg", promo3: "images/promo-3.jpg", promo4: "images/promo-4.jpg",
+  promo5: "images/promo-5.jpg"
+};
+
+const CONTENT = {
+  brand:{ title:"C1アプリ 使い方ガイド" },
+  services:[
+    { id:"sns", icon:"📱", accent:"amber", label:"SNS動画投稿", sub:"動画を投稿してポイント獲得",
+      blocks:[
+        {type:"lead", tid:"sns.lead", text:"投稿するだけでポイントが貯まり、特典に交換できます。"},
+        {type:"acc", group:"使い方", nav:"仕組み", tid:"sns.kumi.title", title:"仕組み（3ステップ）", blocks:[
+          {type:"steps", steps:[
+            {h:"SNSに投稿", tidH:"sns.kumi.s1h", p:"TikTok・Instagram・YouTube に動画を投稿します。", tidP:"sns.kumi.s1p"},
+            {h:"ポイント獲得", tidH:"sns.kumi.s2h", p:"動画1本につき100pt。有効期限は付与日から1年。", tidP:"sns.kumi.s2p"},
+            {h:"特典に交換", tidH:"sns.kumi.s3h", p:"貯まったポイントを特典に交換します。", tidP:"sns.kumi.s3p"}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", nav:"報告", tid:"sns.report.title", title:"使い方：投稿URLの報告", blocks:[
+          {type:"lead", tid:"sns.report.lead", text:"投稿したら、アプリで動画URLを報告するだけ。2ステップで完了です。"},
+          {type:"shot", img:IMG.urlReport, cap:"画面下の「投稿動画共有」タブから開けます", tidCap:"sns.report.cap",
+            pins:[{n:1,x:50,y:34},{n:2,x:50,y:44.5}],
+            legend:[
+              {n:1,h:"URLを貼り付け", tidH:"sns.report.l1h", p:"投稿した動画のURLを「動画URL」欄に貼り付けます。", tidP:"sns.report.l1p"},
+              {n:2,h:"「共有する」をタップ", tidH:"sns.report.l2h", p:"タップで申請完了。ポイントが付与されます。", tidP:"sns.report.l2p"}
+            ]}
+        ]},
+        {type:"acc", group:"詳細", nav:"投稿ルール", tid:"sns.rule.title", title:"投稿動画のルール", blocks:[
+          {type:"steps", check:true, steps:[
+            {h:"訴求動画であること", tidH:"sns.rule.1h", p:"プルエクステ／プルシールの魅力を伝える動画。", tidP:"sns.rule.1p"},
+            {h:"#プルエクステ をつける", tidH:"sns.rule.2h", p:"投稿時に必ずハッシュタグを付ける。", tidP:"sns.rule.2p"},
+            {h:"再アップ動画はNG", tidH:"sns.rule.3h", p:"過去に投稿した動画の再アップロードは禁止。", tidP:"sns.rule.3p"},
+            {h:"マイナスプロモはNG", tidH:"sns.rule.4h", p:"ブランドイメージを下げる内容は禁止。", tidP:"sns.rule.4p"},
+            {h:"15秒以上の動画", tidH:"sns.rule.5h", p:"15秒未満は対象外です。", tidP:"sns.rule.5p"},
+            {h:"投稿から1週間以内に申請", tidH:"sns.rule.6h", p:"期限を過ぎると対象外です。", tidP:"sns.rule.6p"}
+          ]}
+        ]},
+        {type:"acc", group:"詳細", nav:"ポイント", tid:"sns.point.title", title:"ポイント付与について", blocks:[
+          {type:"rules", rows:[
+            ["付与ポイント","動画1本 = 100pt","sns.point.r1"],
+            ["対応SNS","TikTok / Instagram / YouTube","sns.point.r2"],
+            ["月の申請上限","300件／毎月リセット","sns.point.r3"]
+          ]}
+        ]},
+        {type:"acc", group:"詳細", nav:"倍率", tid:"sns.bairitsu.title", title:"ディプロマ優遇（獲得倍率）", blocks:[
+          {type:"rules", rows:[
+            ["資格なし","1.0倍","sns.bairitsu.r1"],["ベーシック","1.1倍","sns.bairitsu.r2"],["テクニック","1.2倍","sns.bairitsu.r3"],["マスター","1.3倍","sns.bairitsu.r4"]
+          ]}
+        ]}
+      ]},
+    { id:"exchange", icon:"🎁", accent:"teal", label:"ポイント（確認・交換）", sub:"貯めたポイントの管理",
+      blocks:[
+        {type:"lead", text:"ポイントの確認・履歴・交換はすべて「ポイント」画面から。毎月の交換可能額は¥50,000まで（Amazon・プロモート共通）。"},
+        {type:"acc", group:"ページ", nav:"開き方", title:"ポイント画面の開き方", blocks:[
+          {type:"carousel", items:[
+            {img:IMG.myPage, cap:"マイページ →「ポイント」",
+              pins:[{n:1,x:88,y:96},{n:2,x:50,y:31}],
+              legend:[
+                {n:1,h:"「マイページ」を開く",p:"画面下部・右の「マイページ」をタップ。"},
+                {n:2,h:"「ポイント」をタップ",p:"上部の「ポイント（残高・履歴・交換申請）」を開きます。"}
+              ]},
+            {img:IMG.ptScreen, cap:"ポイント画面。ここから各操作へ",
+              pins:[{n:1,x:50,y:57.7},{n:2,x:50,y:64.8},{n:3,x:50,y:79}],
+              legend:[
+                {n:1,h:"Amazonギフト券に交換",p:"ギフト券と交換する。"},
+                {n:2,h:"TikTokプロモート代行",p:"自分の投稿をプロモートする。"},
+                {n:3,h:"履歴確認",p:"残高・獲得／使用の履歴を見る。"}
+              ]}
+          ]}
+        ]},
+        {type:"acc", group:"交換", nav:"Amazon交換", title:"Amazonギフト券に交換", blocks:[
+          {type:"lead", text:"1pt = 0.5円で交換（¥1,000＝2,000pt〜）。"},
+          {type:"shot", img:IMG.ptExchangeAmazon, cap:"ポイント → Amazonギフト券に交換",
+            pins:[{n:1,x:50,y:62},{n:2,x:50,y:94}],
+            legend:[
+              {n:1,h:"ギフト額を選択",p:"もらえるギフト額を選ぶ（その他の金額も入力可）。"},
+              {n:2,h:"「交換を申請する」",p:"タップで申請完了。"}
+            ]}
+        ]},
+        {type:"acc", group:"交換", nav:"プロモート", title:"TikTokプロモート代行", blocks:[
+          {type:"note", tone:"warn", text:"依頼の前に、下の「TikTokプロモートの事前設定」を済ませておいてください。"},
+          {type:"lead", text:"1pt = 1円で消費（¥1,000〜）。"},
+          {type:"shot", img:IMG.ptPromote, cap:"ポイント → TikTokプロモート代行",
+            pins:[{n:1,x:50,y:51},{n:2,x:50,y:61},{n:3,x:50,y:79}],
+            legend:[
+              {n:1,h:"投稿URLを入力",p:"プロモートしたい投稿のURLを貼り付け。"},
+              {n:2,h:"依頼額を選択",p:"金額を選ぶ（¥1,000〜）。消費ポイントが表示されます。"},
+              {n:3,h:"「この内容で依頼する」",p:"タップで依頼完了。"}
+            ]}
+        ]},
+        {type:"acc", group:"交換", title:"TikTokプロモートの事前設定", blocks:[
+          {type:"lead", text:"プロモートを使う前に、TikTok側で「すべてのユーザーにプロモーションを許可」する設定が必要です。"},
+          {type:"carousel", items:[
+            {img:IMG.promo1, cap:"プロフィール",
+              pins:[{n:1,x:93,y:11}],
+              legend:[{n:1,h:"右上の三本線をタップ",p:"TikTokの自分のプロフィール画面から、メニューを開きます。"}]},
+            {img:IMG.promo2, cap:"メニュー",
+              pins:[{n:2,x:50,y:53}],
+              legend:[{n:2,h:"「プロモート」をタップ",p:"「作成とビジネスのツール」の中にあります。"}]},
+            {img:IMG.promo3, cap:"マイプロモート",
+              pins:[{n:3,x:50,y:82}],
+              legend:[{n:3,h:"「リクエスト」をタップ",p:"「マイプロモート」タブ →「その他の機能」の中にあります。"}]},
+            {img:IMG.promo4, cap:"リクエスト",
+              pins:[{n:4,x:50,y:21}],
+              legend:[{n:4,h:"「プロモーションの設定」をタップ",p:"あなたをプロモートできるユーザーを選ぶ画面へ。"}]},
+            {img:IMG.promo5, cap:"設定",
+              pins:[{n:5,x:92,y:33}],
+              legend:[{n:5,h:"「すべてのユーザーに許可」を選択",p:"これでC1側からプロモート依頼ができるようになります。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"履歴", nav:"履歴確認", title:"残高・履歴の確認", blocks:[
+          {type:"lead", text:"利用可能ポイント、今月の獲得／使用、月ごとの推移を確認できます。"},
+          {type:"shot", img:IMG.ptHistory, cap:"ポイント → 履歴確認"}
+        ]},
+        {type:"acc", group:"履歴", nav:"ランキング", title:"ランキング", blocks:[
+          {type:"lead", text:"特定の期間のポイント獲得数が、ランキングで表示されます。"},
+          {type:"shot", img:IMG.ptRanking, cap:"ポイント → ランキング",
+            pins:[{n:1,x:30,y:16}],
+            legend:[{n:1,h:"期間を選ぶ",p:"今月／上半期／下半期／年間で切り替えられます。"}]}
+        ]}
+      ]},
+    { id:"edit", icon:"✂️", accent:"indigo", label:"編集代行", sub:"招待制 ／ 一部の方のみ利用可能なサービスです",
+      blocks:[
+        {type:"lead", text:"撮影・投稿だけでOK。面倒な編集はプロにおまかせします。"},
+        {type:"acc", group:"使い方", title:"① 依頼する（動画アップロード）", blocks:[
+          {type:"lead", text:"「依頼・相談」タブの新規タスクから「動画アップロード」を選びます。"},
+          {type:"carousel", items:[
+            {img:IMG.editDash, cap:"「依頼・相談」タブ →「＋ 新規タスク」",
+              pins:[{n:1,x:75,y:87}],
+              legend:[{n:1,h:"「＋ 新規タスク」をタップ",p:"画面右下のボタンから。"}]},
+            {img:IMG.editRequest, cap:"新規リクエスト",
+              pins:[{n:1,x:50,y:88}],
+              legend:[{n:1,h:"「動画アップロード」を選択",p:"素材動画の編集依頼です。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"② 動画をアップロード", blocks:[
+          {type:"lead", text:"撮影した動画を選んでアップロードします。"},
+          {type:"shot", img:IMG.editUpload, cap:"動画のアップロード",
+            pins:[{n:1,x:50,y:32},{n:2,x:50,y:94}],
+            legend:[
+              {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ。"},
+              {n:2,h:"「処理を開始する」",p:"タップでアップロード開始。"}
+            ]},
+          {type:"lead", text:"アップロード時の注意点:"},
+          {type:"steps", check:true, steps:[
+            {h:"必要な動画は同時に選択", p:"分割された撮影動画は、必要な動画を全て同時に選択。"},
+            {h:"アップロード中はアプリを閉じない", p:"完了までそのまま待ちます。"},
+            {h:"合計5分以上をアップロード", p:"撮影動画の合計が5分以上になるように。"}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"③ 進捗を確認", blocks:[
+          {type:"lead", text:"アップロード後は「制作中の動画」で状況を確認できます。"},
+          {type:"carousel", items:[
+            {img:IMG.editProgress, cap:"制作中は「進行中」",
+              pins:[{n:1,x:34,y:52}],
+              legend:[{n:1,h:"制作中は「進行中」",p:"制作が進むと「進行中」と表示されます。"}]},
+            {img:IMG.editDone, cap:"完成すると「完了」",
+              pins:[{n:1,x:33,y:49}],
+              legend:[{n:1,h:"完成したら「完了」",p:"完成すると「完了」と表示されます。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"サービス詳細", blocks:[
+          {type:"rules", rows:[
+            ["利用費用","無料"],
+            ["納期","依頼から最大10営業日以内"],
+            ["対象素材","プルエクステのカウンセリング動画のみ"],
+            ["月ノルマ","あり（詳細は別途）"],
+            ["投稿義務","完成後は必ずTikTokとYouTubeに投稿"],
+            ["プロモート","TikTok投稿にのみ実施"]
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"投稿の報告について", blocks:[
+          {type:"lead", text:"投稿が完了したら、SNS動画投稿の「使い方：投稿URLの報告」と同じ手順で報告します。"}
+        ]},
+        {type:"acc", group:"詳細", title:"ポイント対象の動画", blocks:[
+          {type:"rules", rows:[
+            ["編集代行で作った動画","対象外（URL報告は必要）"],
+            ["自分で作った動画","対象（1本100pt）"]
+          ]},
+          {type:"note", text:"報告は「投稿動画共有」から。操作は共通です。"}
+        ]}
+      ]},
+    { id:"curriculum", icon:"🎓", accent:"green", label:"技術カリキュラム", sub:"2ヶ月でデビュー",
+      blocks:[
+        {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
+        {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
+          {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
+          {type:"carousel", items:[
+            {img:IMG.currLevels, cap:"技術カリキュラム（レベル一覧）",
+              pins:[{n:1,x:30,y:40}],
+              legend:[{n:1,h:"レベルを選ぶ",p:"現在は【入門】のみ公開中。実施したいレベルをタップ。"}]},
+            {img:IMG.currList, cap:"進捗・次の受講案内・カリキュラム一覧",
+              pins:[{n:1,x:50,y:37}],
+              legend:[{n:1,h:"カリキュラムを受講",p:"「このカリキュラムを受講する」から開始します。"}]}
+          ]},
+          {type:"note", text:"【入門】は一覧の順番通りに受講。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"}
+        ]},
+        {type:"acc", group:"使い方", title:"② 動画を視聴する", blocks:[
+          {type:"lead", text:"動画を最後まで視聴すると受講完了になります。"},
+          {type:"carousel", items:[
+            {img:IMG.currVideo, cap:"動画の再生",
+              pins:[{n:1,x:50,y:40}],
+              legend:[{n:1,h:"再生ボタンをタップ",p:"全画面で見る場合は右上の拡大ボタン。"}]},
+            {img:IMG.currVideoFull, cap:"全画面表示。最後まで見ると「視聴済み」に"}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"③ クイズに回答する", blocks:[
+          {type:"lead", text:"全問正解すると受講完了になります。"},
+          {type:"carousel", items:[
+            {img:IMG.currQuiz, cap:"回答を選ぶ",
+              pins:[{n:1,x:50,y:95}],
+              legend:[{n:1,h:"回答して「回答する」",p:"選択肢を選び「回答する」をタップ。"}]},
+            {img:IMG.currQuizAns, cap:"正誤を確認",
+              pins:[{n:1,x:50,y:95}],
+              legend:[{n:1,h:"「次の問題へ」",p:"正誤を確認して次に進みます。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"④ 課題を提出する", blocks:[
+          {type:"lead", text:"動画・画像を提出して技術を確認してもらいます。課題画面には「この課題でやること」と「合格の目安」が表示されます。"},
+          {type:"carousel", items:[
+            {img:IMG.taskSubmit, cap:"課題提出の画面",
+              pins:[{n:1,x:50,y:77}],
+              legend:[{n:1,h:"「＋動画・画像を提出する」",p:"緑のボタンをタップします。"}]},
+            {img:IMG.taskPicker, cap:"画像・動画の選択",
+              pins:[{n:2,x:50,y:45},{n:3,x:92,y:13}],
+              legend:[
+                {n:2,h:"ファイルを選択",p:"提出する写真・動画を選びます（複数可）。"},
+                {n:3,h:"右上で決定",p:"iPhoneは右上の✓、Androidは「選択」をタップ。"}
+              ]},
+            {img:IMG.taskFiles, cap:"メモ入力・提出",
+              pins:[{n:4,x:50,y:77},{n:5,x:50,y:85}],
+              legend:[
+                {n:4,h:"メモに必要事項を記入",p:"必要事項があれば「メモ（任意）」に入力（＋ファイル追加も可）。"},
+                {n:5,h:"「この内容で提出する」",p:"提出するとGoogle Chatにテクニカル部からアドバイスが届きます。"}
+              ]}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"⑤ 進捗を確認する（技術カルテ）", blocks:[
+          {type:"lead", text:"「技術カルテ」で進捗状況が一目でわかります。"},
+          {type:"carousel", items:[
+            {img:IMG.currLevels, cap:"下タブ「依頼・相談」→「技術カルテ」",
+              pins:[{n:1,x:50,y:78}],
+              legend:[{n:1,h:"「技術カルテ」をタップ",p:"下タブ「依頼・相談」→「技術カルテ」の順にタップ。"}]},
+            {img:IMG.currKarte, cap:"進捗・全国ランキング",
+              pins:[{n:1,x:40,y:40}],
+              legend:[{n:1,h:"進捗と順位を確認",p:"各カリキュラムの進捗状況・全国ランキングが見られます。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"カリキュラムの構成", blocks:[
+          {type:"lead", text:"入門・基礎・応用・エキスパートの4レベルで構成。現在は【入門】のみ公開中です。"},
+          {type:"rules", rows:[
+            ["コンテンツ","動画視聴／クイズ／課題提出の3種"],
+            ["動画視聴","動画を視聴して学ぶ"],
+            ["クイズ","知識が正しいかを確認"],
+            ["課題提出","技術が正しいかを確認"]
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"受講の完了条件", blocks:[
+          {type:"rules", rows:[
+            ["動画視聴","最後まで視聴で完了（「視聴済み」に）"],
+            ["クイズ","全問正解で完了"],
+            ["受講順","入門は順番通り／基礎・応用・エキスパートは選択可"]
+          ]}
+        ]}
+      ]},
+    { id:"register", icon:"🚀", accent:"slate", label:"アプリの登録方法", sub:"インストール・ログイン",
+      blocks:[
+        {type:"lead", text:"アプリをインストールして、ログインするだけ。2ステップで完了です。"},
+        {type:"acc", title:"① アプリをインストール", blocks:[
+          {type:"lead", text:"お使いの端末に合わせてインストールしてください。ボタンはタップ、QRは別の端末・PCから読み取れます。"},
+          {type:"linkbtn", href:"https://apps.apple.com/app/c1%E3%82%A2%E3%83%97%E3%83%AA/id6760693939", label:"iPhone：App Store を開く"},
+          {type:"qr", img:IMG.qrIos, cap:"iPhone用QR"},
+          {type:"linkbtn", href:"https://play.google.com/store/apps/details?id=com.create1.offiapp", label:"Android：Google Play を開く"},
+          {type:"qr", img:IMG.qrAnd, cap:"Android用QR"},
+          {type:"note", tone:"warn", text:"Android は、Playストアのログインを「C1発行のGoogleアカウント」に切り替えてから読み込んでください。"}
+        ]},
+        {type:"acc", title:"② ログイン", blocks:[
+          {type:"lead", text:"Googleアカウント、または生体認証でサインイン。"},
+          {type:"shot", img:IMG.login, cap:"「Googleでサインイン」または「生体認証でサインイン」"},
+          {type:"note", tone:"warn", text:"ログインできるのは C1発行のGoogleアカウント のみです。"}
+        ]}
+      ]}
+  ]
+};
+/* ▲▲▲ 中身データここまで ▲▲▲ */
+
+/* ---------- rendering engine (触らなくてOK) ---------- */
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let TEXTS={};
+function T(tid,fb){ return (tid && TEXTS[tid]!=null && TEXTS[tid]!=='') ? TEXTS[tid] : fb; }
+const CV='<span class="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg></span>';
+const CHEV='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>';
+const BACK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg>';
+const MAG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-4-4"/></svg>';
+const HOMEIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h4v-5h4v5h4v-9"/></svg>';
+
+function shotHtml(b){
+  const pins=(b.pins||[]).map(p=>`<span class="pin" style="left:${p.x}%;top:${p.y}%">${p.n}</span>`).join('');
+  const leg=(b.legend||[]).map(l=>`<div class="li"><span class="num">${l.n}</span><div><h4>${esc(T(l.tidH,l.h))}</h4><p>${esc(T(l.tidP,l.p))}</p></div></div>`).join('');
+  const cap=T(b.tidCap,b.cap);
+  return `<div class="shot-wrap"><div class="shot"><img src="${b.img}" alt="操作画面">${pins}</div>${cap?`<div class="shot-cap">${esc(cap)}</div>`:''}</div>${leg?`<div class="legend">${leg}</div>`:''}`;
+}
+function block(b){
+  if(b.type==="lead") return `<p class="lead">${esc(T(b.tid,b.text))}</p>`;
+  if(b.type==="note") return `<div class="note ${b.tone==='warn'?'warn':''}"><span class="i">${b.tone==='warn'?'!':'i'}</span><p>${esc(T(b.tid,b.text))}</p></div>`;
+  if(b.type==="linkbtn") return `<a class="linkbtn" href="${esc(b.href)}" target="_blank" rel="noopener">${esc(b.label)}</a>`;
+  if(b.type==="qr") return `<div class="qrbox"><img src="${b.img}" alt="QRコード">${b.cap?`<small>${esc(b.cap)}</small>`:''}</div>`;
+  if(b.type==="rules") return `<div class="rules">${b.rows.map(r=>`<div class="row"><span class="l">${esc(r[0])}</span><span class="v">${esc(T(r[2],r[1]))}</span></div>`).join('')}</div>`;
+  if(b.type==="steps") return `<ol class="steps ${b.check?'check':''}">${b.steps.map(s=>`<li><h4>${esc(T(s.tidH,s.h))}</h4><p>${esc(T(s.tidP,s.p))}</p></li>`).join('')}</ol>`;
+  if(b.type==="shot"){ return shotHtml(b); }
+  if(b.type==="carousel"){
+    const slides=b.items.map(it=>`<div class="cslide">${shotHtml(it)}</div>`).join('');
+    const dots=b.items.map((_,i)=>`<span class="cdot${i===0?' on':''}"></span>`).join('');
+    return `<div class="carousel-wrap"><div class="carousel">${slides}</div><div class="cdots">${dots}</div><div class="cswipe">← スワイプで切り替え →</div></div>`;
+  }
+  if(b.type==="acc"){
+    const openAttr = b.open===false ? '' : 'open';
+    return `<details class="acc" ${b.nav?`data-nav="${esc(b.nav)}"`:''} ${openAttr}><summary><span class="dot"></span>${esc(T(b.tid,b.title))}${CV}</summary><div class="inner">${b.blocks.map(block).join('')}</div></details>`;
+  }
+  return '';
+}
+
+function renderHome(){
+  const c=CONTENT;
+  const cards=c.services.map(s=>`
+    <button class="card ${s.stub?'stub':''}" data-id="${s.id}" data-accent="${s.accent}">
+      <span class="chip">${s.icon}</span>
+      <span class="tx"><h3>${esc(s.label)}</h3><small>${esc(s.sub)}</small></span>
+      ${s.stub?'<span class="badge">準備中</span>':`<span class="go">${CHEV}</span>`}
+    </button>`).join('');
+  return `<div class="home" id="home">
+    <div class="hero">
+      <h1>${esc(c.brand.title)}</h1>
+    </div>
+    <button class="search-trigger" id="searchOpen">
+      <span class="mag">${MAG}</span>
+      <span class="ph">キーワードで検索</span>
+    </button>
+    <div class="sec-label">サービス・使い方</div>
+    <div class="cards">${cards}</div>
+    <div class="foot">C1アプリは常にバージョンアップ中のため、仕様が変更になる場合があります。<br>この資料は関係者限定です。</div>
+  </div>
+  <div class="detail" id="detail"></div>
+  <div class="search" id="search">
+    <div class="search-bar">
+      <span class="mag">${MAG}</span>
+      <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="キーワードで検索">
+      <button id="searchClose">キャンセル</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+  <nav class="bottomnav">
+    <button class="nav-item active" id="navHome">${HOMEIC}<span>ホーム</span></button>
+    <button class="nav-item" id="navSearch">${MAG}<span>検索</span></button>
+  </nav>`;
+}
+
+function tabOrder(accs){ const seen=[]; accs.forEach(a=>{ if(a.group && !seen.includes(a.group)) seen.push(a.group); }); return seen; }
+function orderedAccs(s){
+  const accs=s.blocks.filter(b=>b.type==='acc');
+  const tabs=tabOrder(accs);
+  if(tabs.length>1){ let out=[]; tabs.forEach(g=>{ out=out.concat(accs.filter(a=>a.group===g)); });
+    accs.forEach(a=>{ if(!out.includes(a)) out.push(a); }); return out; }
+  return accs;
+}
+function renderBody(s){
+  const pre=s.blocks.filter(b=>b.type!=='acc');
+  const accs=s.blocks.filter(b=>b.type==='acc');
+  let html=pre.map(block).join('');
+  const tabs=tabOrder(accs);
+  if(tabs.length>1){
+    html+=`<div class="tabwrap"><div class="tabs">`+tabs.map((g,i)=>`<button class="tab${i===0?' on':''}" data-tab="${esc(g)}">${esc(g)}</button>`).join('')+`</div></div>`;
+    tabs.forEach((g,i)=>{ const items=accs.filter(a=>a.group===g);
+      html+=`<div class="tabpanel${i===0?' on':''}" data-panel="${esc(g)}">`+items.map(block).join('')+`</div>`; });
+  } else { html+=accs.map(block).join(''); }
+  return html;
+}
+function openDetail(id){
+  const s=CONTENT.services.find(x=>x.id===id); if(!s)return;
+  const d=document.getElementById('detail');
+  d.setAttribute('data-accent',s.accent);
+  d.innerHTML=`
+    <div class="topbar"><button class="crumb-back" id="back">${BACK}<span>ホーム</span></button><span class="crumb-sep">›</span><span class="crumb-now">${esc(s.label)}</span></div>
+    <div class="d-head"><span class="ki">${s.icon}</span><h2>${esc(s.label)}</h2><div class="sub">${esc(s.sub)}</div></div>
+    <div class="d-body">${renderBody(s)}</div>`;
+  document.getElementById('home').classList.add('off');
+  d.classList.add('on');
+  const allAccs=[...d.querySelectorAll('.acc')];
+  allAccs.forEach((a,i)=>a.id='sec'+i);
+  d.querySelectorAll('.carousel').forEach(car=>{
+    const dots=car.parentElement.querySelectorAll('.cdot');
+    car.addEventListener('scroll',()=>{
+      const i=Math.round(car.scrollLeft/car.clientWidth);
+      dots.forEach((dt,j)=>dt.classList.toggle('on',j===i));
+    },{passive:true});
+  });
+  const tabbar=d.querySelector('.tabs');
+  if(tabbar){
+    tabbar.querySelectorAll('.tab').forEach(t=>{ t.onclick=()=>{
+      const g=t.dataset.tab;
+      tabbar.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===t));
+      d.querySelectorAll('.tabpanel').forEach(p=>p.classList.toggle('on',p.dataset.panel===g));
+      window.scrollTo(0,0); app.scrollTop=0;
+    }; });
+  } else {
+    const navAccs=allAccs.filter(a=>a.dataset.nav);
+    if(navAccs.length>1){
+      const bar=document.createElement('div'); bar.className='jump';
+      navAccs.forEach(a=>{
+        const btn=document.createElement('button'); btn.textContent=a.dataset.nav;
+        btn.onclick=()=>{ a.open=true; a.scrollIntoView({behavior:'smooth',block:'start'}); };
+        bar.appendChild(btn);
+      });
+      d.querySelector('.topbar').after(bar);
+    }
+  }
+  document.getElementById('back').onclick=()=>{showHome();};
+  updateNav(false);
+  window.scrollTo(0,0); app.scrollTop=0;
+}
+function showHome(){
+  document.getElementById('detail').classList.remove('on');
+  document.getElementById('home').classList.remove('off');
+  updateNav(true);
+  window.scrollTo(0,0); app.scrollTop=0;
+}
+function updateNav(home){ const h=document.getElementById('navHome'); if(h) h.classList.toggle('active',home); }
+
+function route(){ showHome(); }
+app.addEventListener('click',e=>{
+  const card=e.target.closest('.card'); if(card){openDetail(card.dataset.id);}
+});
+
+/* ---------- search ---------- */
+const MAG_INDEX=[];
+function accText(b){
+  const t=[b.title];
+  (b.blocks||[]).forEach(x=>{
+    if(x.type==='lead'||x.type==='note') t.push(x.text);
+    else if(x.type==='rules') x.rows.forEach(r=>t.push(r[0]+' '+r[1]));
+    else if(x.type==='steps') x.steps.forEach(s=>t.push(s.h+' '+s.p));
+    else if(x.type==='shot'){ if(x.cap)t.push(x.cap); (x.legend||[]).forEach(l=>t.push(l.h+' '+l.p)); }
+    else if(x.type==='carousel'){ (x.items||[]).forEach(it=>{ if(it.cap)t.push(it.cap); (it.legend||[]).forEach(l=>t.push(l.h+' '+l.p)); }); }
+    else if(x.type==='qr'&&x.cap) t.push(x.cap);
+    else if(x.type==='linkbtn') t.push(x.label);
+  });
+  return t.join(' ');
+}
+function buildIndex(){
+  CONTENT.services.forEach(s=>{
+    const leadText=s.blocks.filter(b=>b.type==='lead').map(b=>b.text).join(' ');
+    addEntry(s,'', -1, s.label+' '+s.sub+' '+leadText);
+    orderedAccs(s).forEach((b,i)=>{ addEntry(s,b.title,i, s.label+' '+accText(b)); });
+  });
+}
+function addEntry(s,title,ai,text){
+  MAG_INDEX.push({sid:s.id,slabel:s.label,icon:s.icon,accent:s.accent,title:title,ai:ai,
+    text:text, ctext:cmp(text), ctitle:cmp(title), clabel:cmp(s.label)});
+}
+function cmp(s){ return (s||'').toLowerCase().replace(/[\s　（）()「」【】・,、。／\/：:＞>･\-]/g,''); }
+function grams(cq){ if(cq.length<=1) return [cq]; const g=[]; for(let i=0;i<cq.length-1;i++)g.push(cq.slice(i,i+2)); return [...new Set(g)]; }
+function score(e,cq,gs){
+  let s=0,m=0;
+  gs.forEach(g=>{ const c=e.ctext.split(g).length-1; if(c>0){ m++; s+=Math.min(c,3); } });
+  if(m===0) return 0;
+  s += (m/gs.length)*10;
+  if(e.ctext.includes(cq)) s+=15;
+  if(e.clabel.includes(cq)) s+=25;
+  if(e.ctitle && e.ctitle.includes(cq)) s+=30;
+  return s;
+}
+function snippet(text,q){
+  const tl=text.toLowerCase(); let i=tl.indexOf(q.toLowerCase());
+  if(i<0){ const cq=cmp(q); const g=cq.length>=2?cq.slice(0,2):cq; i=tl.indexOf(g); }
+  if(i<0) return '';
+  const a=Math.max(0,i-12), b=Math.min(text.length,i+Math.max(q.length,6)+22);
+  return (a>0?'…':'')+text.slice(a,b).trim()+(b<text.length?'…':'');
+}
+function renderSearch(q){
+  const box=document.getElementById('searchResults'); q=(q||'').trim();
+  if(!q){ box.innerHTML='<div class="search-hint">キーワードを入力してください<br>（例: ポイント／QR／15秒／交換）</div>'; return; }
+  const cq=cmp(q); if(!cq){ box.innerHTML=''; return; }
+  const gs=grams(cq);
+  const scored=MAG_INDEX.map(e=>({e,sc:score(e,cq,gs)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc);
+  const top=scored.length?scored[0].sc:0;
+  const perSec={}, out=[];
+  for(const x of scored){ if(x.sc<top*0.28) break; const n=perSec[x.e.sid]||0; if(n>=3) continue; perSec[x.e.sid]=n+1; out.push(x.e); if(out.length>=8) break; }
+  if(!out.length){ box.innerHTML='<div class="search-hint">「'+esc(q)+'」に一致する項目は見つかりませんでした</div>'; return; }
+  box.innerHTML=out.map(e=>{
+    const path=e.title? e.slabel+' ＞ '+e.title : e.slabel;
+    const sn=snippet(e.text,q);
+    return `<button class="sr" data-accent="${e.accent}" data-sid="${e.sid}" data-ai="${e.ai}"><span class="ic">${e.icon}</span><span class="tx"><span class="path">${esc(path)}</span>${sn?`<span class="snip">${esc(sn)}</span>`:''}</span></button>`;
+  }).join('');
+}
+function openSearch(){ const s=document.getElementById('search'); s.classList.add('on'); const i=document.getElementById('searchInput'); i.value=''; renderSearch(''); setTimeout(()=>i.focus(),60); }
+function closeSearch(){ document.getElementById('search').classList.remove('on'); }
+function openSearchResult(sid,ai){
+  closeSearch(); openDetail(sid);
+  if(ai>=0){ const d=document.getElementById('detail'); const acc=d.querySelector('#sec'+ai);
+    if(acc){
+      const panel=acc.closest('.tabpanel');
+      if(panel){ const g=panel.dataset.panel; const tb=d.querySelector('.tabs');
+        if(tb){ tb.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.tab===g));
+          d.querySelectorAll('.tabpanel').forEach(p=>p.classList.toggle('on',p.dataset.panel===g)); } }
+      acc.open=true; setTimeout(()=>acc.scrollIntoView({behavior:'smooth',block:'start'}),70);
+    } }
+}
+buildIndex();
+function wireUI(){
+  document.getElementById('navHome').onclick=()=>{ closeSearch(); showHome(); };
+  document.getElementById('navSearch').onclick=openSearch;
+  document.getElementById('searchOpen').onclick=openSearch;
+  document.getElementById('searchClose').onclick=closeSearch;
+  document.getElementById('searchInput').addEventListener('input',e=>renderSearch(e.target.value));
+  document.getElementById('searchResults').addEventListener('click',e=>{
+    const r=e.target.closest('.sr'); if(r){ openSearchResult(r.dataset.sid, parseInt(r.dataset.ai,10)); }
+  });
+}
+function initUI(){ app.innerHTML=renderHome(); wireUI(); }
+
+/* ---------- content from Google Sheet (via GAS) ---------- */
+/* 確認用ビルドではGAS連動をオフ（URL空）。運用移行時にURLを戻します。 */
+const GAS_URL="";
+function splash(on){
+  let el=document.getElementById('splash');
+  if(on){ if(!el){ el=document.createElement('div'); el.id='splash'; el.className='splash';
+    el.innerHTML='<div class="sp-in"><div class="sp-dot"></div>最新の内容を読み込み中…</div>'; document.body.appendChild(el); } }
+  else if(el){ el.remove(); }
+}
+async function boot(){
+  if(!GAS_URL){ initUI(); return; }   // 確認用: 既定テキストで即表示
+  try{ const c=JSON.parse(localStorage.getItem('c1texts')||'null'); if(c) TEXTS=c; }catch(e){}
+  const hadCache=Object.keys(TEXTS).length>0;
+  initUI();
+  if(!hadCache) splash(true);
+  try{
+    const r=await fetch(GAS_URL,{cache:'no-store'});
+    const j=await r.json();
+    if(j && typeof j==='object'){
+      TEXTS=j;
+      try{ localStorage.setItem('c1texts',JSON.stringify(j)); }catch(e){}
+      const onHome=!document.getElementById('detail').classList.contains('on');
+      if(onHome) initUI();
+    }
+  }catch(e){ /* keep cache/defaults */ }
+  splash(false);
+}
+boot();
+</script>
+</body>
+</html>
