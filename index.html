@@ -39,7 +39,7 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 [data-accent="teal"]{--ac:#0E90A0;--ac-soft:#E3F2F4;--ac-ink:#0a5a64}
 
 /* ---------- HOME ---------- */
-.home{padding:0 0 88px}
+.home{padding:0 0 40px}
 .hero{padding:32px 22px 28px;background:linear-gradient(180deg,#171A26 0%,#1E2233 100%);color:#fff}
 .hero .eyebrow{font:500 12px/1 var(--body);letter-spacing:.14em;color:#AEB6D0;
    text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
@@ -93,16 +93,11 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
    background:var(--ac-soft);font-size:22px;margin-bottom:12px}
 .d-head h2{font-family:var(--disp);font-weight:900;font-size:23px;letter-spacing:.01em}
 .d-head .sub{color:var(--muted);font-size:12.5px;font-weight:500;margin-top:3px}
-.d-body{padding:8px 16px 92px}
-.bottomnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:468px;z-index:40;
-   display:flex;background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid var(--line);
-   padding:6px 0 calc(6px + env(safe-area-inset-bottom))}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;border:none;background:none;
-   cursor:pointer;font-family:inherit;color:var(--muted);padding:6px 0}
-.nav-item svg{width:23px;height:23px}
-.nav-item span{font-size:10.5px;font-weight:700;font-family:var(--body)}
-.nav-item.active{color:var(--ink)}
-.nav-item:active{opacity:.6}
+.d-body{padding:8px 16px 48px}
+.topbar-search{margin-left:auto;flex:0 0 auto;width:36px;height:36px;border-radius:10px;border:none;
+   background:none;color:var(--ink2);display:grid;place-items:center;cursor:pointer}
+.topbar-search:active{background:var(--line2)}
+.topbar-search svg{width:20px;height:20px}
 
 .lead{color:var(--ink2);font-size:14.5px;padding:8px 6px 4px;line-height:1.75}
 .grouphead{font-family:var(--disp);font-weight:800;font-size:15px;color:var(--ink);
@@ -228,14 +223,22 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 .search-bar input{flex:1;min-width:0;border:none;outline:none;font-family:inherit;font-size:16px;background:none;color:var(--ink)}
 .search-bar button{border:none;background:none;color:#3A56C8;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;white-space:nowrap}
 .search-results{flex:1;overflow-y:auto;padding:6px 14px 40px}
-.search-hint{color:var(--muted);font-size:13px;text-align:center;padding:34px 20px;line-height:1.7}
-.sr{display:flex;gap:11px;align-items:flex-start;width:100%;text-align:left;background:var(--surface);
+.search-hint{color:var(--muted);font-size:13px;text-align:center;padding:26px 20px 8px;line-height:1.7;font-weight:700}
+.sc-chips{display:flex;flex-wrap:wrap;gap:8px;padding:6px 16px 20px;justify-content:center}
+.sc-chip{border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-family:inherit;font-weight:700;font-size:13px;padding:8px 15px;border-radius:999px;cursor:pointer}
+.sc-chip:active{background:var(--line2)}
+.sr-group{margin-top:16px}
+.sr-head{display:flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:700;font-size:12.5px;color:var(--ac-ink);padding:2px 4px 7px}
+.sr-hic{width:24px;height:24px;flex:0 0 auto;border-radius:7px;background:var(--ac-soft);display:grid;place-items:center;font-size:14px}
+.sr{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:var(--surface);
    border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:8px;cursor:pointer;font-family:inherit;color:inherit}
 .sr:active{background:var(--ac-soft)}
-.sr .ic{width:34px;height:34px;flex:0 0 auto;border-radius:9px;background:var(--ac-soft);display:grid;place-items:center;font-size:17px}
 .sr .tx{min-width:0;flex:1}
-.sr .tx .path{color:var(--ac);font-size:12px;font-weight:700;font-family:var(--disp);display:block}
+.sr .tx .path{color:var(--ink);font-size:13.5px;font-weight:700;font-family:var(--disp);display:block}
 .sr .tx .snip{color:var(--ink2);font-size:12px;margin-top:2px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sr .sr-go{flex:0 0 auto;color:var(--muted);display:grid;place-items:center}
+.sr .sr-go svg{width:18px;height:18px}
+mark{background:#FCE39C;color:inherit;border-radius:3px;padding:0 1px;font-weight:700}
 
 .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:none}
@@ -418,10 +421,11 @@ const CONTENT = {
         {type:"acc", group:"使い方", title:"② 動画をアップロード", blocks:[
           {type:"lead", text:"撮影した動画を選んでアップロードします。"},
           {type:"shot", img:IMG.editUpload, cap:"動画のアップロード",
-            pins:[{n:1,x:50,y:32},{n:2,x:50,y:94}],
+            pins:[{n:1,x:50,y:26},{n:2,x:50,y:48},{n:3,x:50,y:96}],
             legend:[
-              {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ。"},
-              {n:2,h:"「処理を開始する」",p:"タップでアップロード開始。"}
+              {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ（複数可）。"},
+              {n:2,h:"タイトル・要望を入力（任意）",p:"必要なら「タイトル」や「編集のご要望」を入力します。"},
+              {n:3,h:"「処理を開始する」",p:"タップでアップロード開始。"}
             ]},
           {type:"lead", text:"アップロード時の注意点:"},
           {type:"steps", check:true, steps:[
@@ -450,6 +454,11 @@ const CONTENT = {
             ["投稿義務","完成後は必ずTikTokとYouTubeに投稿"],
             ["プロモート","TikTok投稿にのみ実施"]
           ]}
+        ]},
+        {type:"acc", group:"使い方", title:"BGMについて", blocks:[
+          {type:"lead", text:"納品された動画にBGMは付いていません。必要な場合は自分で付けてください。"},
+          {type:"note", tone:"warn", text:"TikTokでプロモートをかける場合は、商用利用が可能な楽曲を選んでください。"},
+          {type:"note", text:"プロモートをかけない（かからなくても問題ない）場合は、楽曲の種類は気にしなくてOKです。"}
         ]},
         {type:"acc", group:"詳細", title:"投稿の報告について", blocks:[
           {type:"lead", text:"投稿が完了したら、SNS動画投稿の「使い方：投稿URLの報告」と同じ手順で報告します。"}
@@ -631,11 +640,7 @@ function renderHome(){
       <button id="searchClose">キャンセル</button>
     </div>
     <div class="search-results" id="searchResults"></div>
-  </div>
-  <nav class="bottomnav">
-    <button class="nav-item active" id="navHome">${HOMEIC}<span>ホーム</span></button>
-    <button class="nav-item" id="navSearch">${MAG}<span>検索</span></button>
-  </nav>`;
+  </div>`;
 }
 
 function tabOrder(accs){ const seen=[]; accs.forEach(a=>{ if(a.group && !seen.includes(a.group)) seen.push(a.group); }); return seen; }
@@ -663,7 +668,7 @@ function openDetail(id){
   const d=document.getElementById('detail');
   d.setAttribute('data-accent',s.accent);
   d.innerHTML=`
-    <div class="topbar"><button class="crumb-back" id="back">${BACK}<span>ホーム</span></button><span class="crumb-sep">›</span><span class="crumb-now">${esc(s.label)}</span></div>
+    <div class="topbar"><button class="crumb-back" id="back">${BACK}<span>ホーム</span></button><span class="crumb-sep">›</span><span class="crumb-now">${esc(s.label)}</span><button class="topbar-search" id="detailSearch" aria-label="検索">${MAG}</button></div>
     <div class="d-head"><span class="ki">${s.icon}</span><h2>${esc(s.label)}</h2><div class="sub">${esc(s.sub)}</div></div>
     <div class="d-body">${renderBody(s)}</div>`;
   document.getElementById('home').classList.add('off');
@@ -698,16 +703,14 @@ function openDetail(id){
     }
   }
   document.getElementById('back').onclick=()=>{showHome();};
-  updateNav(false);
+  const dse=document.getElementById('detailSearch'); if(dse) dse.onclick=openSearch;
   window.scrollTo(0,0); app.scrollTop=0;
 }
 function showHome(){
   document.getElementById('detail').classList.remove('on');
   document.getElementById('home').classList.remove('off');
-  updateNav(true);
   window.scrollTo(0,0); app.scrollTop=0;
 }
-function updateNav(home){ const h=document.getElementById('navHome'); if(h) h.classList.toggle('active',home); }
 
 function route(){ showHome(); }
 app.addEventListener('click',e=>{
@@ -752,6 +755,13 @@ function score(e,cq,gs){
   if(e.ctitle && e.ctitle.includes(cq)) s+=30;
   return s;
 }
+function reEsc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function hl(text,q){
+  const raw=(q||'').trim(); if(!raw) return esc(text);
+  const ns=[...new Set([raw, ...raw.split(/\s+/)].filter(Boolean))].sort((a,b)=>b.length-a.length).map(n=>reEsc(esc(n)));
+  if(!ns.length) return esc(text);
+  try{ return esc(text).replace(new RegExp('('+ns.join('|')+')','gi'),'<mark>$1</mark>'); }catch(e){ return esc(text); }
+}
 function snippet(text,q){
   const tl=text.toLowerCase(); let i=tl.indexOf(q.toLowerCase());
   if(i<0){ const cq=cmp(q); const g=cq.length>=2?cq.slice(0,2):cq; i=tl.indexOf(g); }
@@ -759,20 +769,27 @@ function snippet(text,q){
   const a=Math.max(0,i-12), b=Math.min(text.length,i+Math.max(q.length,6)+22);
   return (a>0?'…':'')+text.slice(a,b).trim()+(b<text.length?'…':'');
 }
+const SC_CHIPS=['ポイント交換','プロモート','課題提出','技術カルテ','ディプロマ'];
 function renderSearch(q){
   const box=document.getElementById('searchResults'); q=(q||'').trim();
-  if(!q){ box.innerHTML='<div class="search-hint">キーワードを入力してください<br>（例: ポイント／QR／15秒／交換）</div>'; return; }
+  if(!q){ box.innerHTML='<div class="search-hint">よく調べる項目</div><div class="sc-chips">'+SC_CHIPS.map(k=>`<button class="sc-chip" data-k="${esc(k)}">${esc(k)}</button>`).join('')+'</div>'; return; }
   const cq=cmp(q); if(!cq){ box.innerHTML=''; return; }
   const gs=grams(cq);
   const scored=MAG_INDEX.map(e=>({e,sc:score(e,cq,gs)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc);
   const top=scored.length?scored[0].sc:0;
   const perSec={}, out=[];
-  for(const x of scored){ if(x.sc<top*0.28) break; const n=perSec[x.e.sid]||0; if(n>=3) continue; perSec[x.e.sid]=n+1; out.push(x.e); if(out.length>=8) break; }
+  for(const x of scored){ if(x.sc<top*0.28) break; const n=perSec[x.e.sid]||0; if(n>=3) continue; perSec[x.e.sid]=n+1; out.push(x.e); if(out.length>=10) break; }
   if(!out.length){ box.innerHTML='<div class="search-hint">「'+esc(q)+'」に一致する項目は見つかりませんでした</div>'; return; }
-  box.innerHTML=out.map(e=>{
-    const path=e.title? e.slabel+' ＞ '+e.title : e.slabel;
-    const sn=snippet(e.text,q);
-    return `<button class="sr" data-accent="${e.accent}" data-sid="${e.sid}" data-ai="${e.ai}"><span class="ic">${e.icon}</span><span class="tx"><span class="path">${esc(path)}</span>${sn?`<span class="snip">${esc(sn)}</span>`:''}</span></button>`;
+  const groups=[], gm={};
+  out.forEach(e=>{ if(!gm[e.sid]){ gm[e.sid]={slabel:e.slabel,icon:e.icon,accent:e.accent,items:[]}; groups.push(gm[e.sid]); } gm[e.sid].items.push(e); });
+  box.innerHTML=groups.map(g=>{
+    const head=`<div class="sr-head" data-accent="${g.accent}"><span class="sr-hic">${g.icon}</span>${esc(g.slabel)}</div>`;
+    const items=g.items.map(e=>{
+      const title=e.title||'概要';
+      const sn=snippet(e.text,q);
+      return `<button class="sr" data-accent="${e.accent}" data-sid="${e.sid}" data-ai="${e.ai}"><span class="tx"><span class="path">${hl(title,q)}</span>${sn?`<span class="snip">${hl(sn,q)}</span>`:''}</span><span class="sr-go">${CHEV}</span></button>`;
+    }).join('');
+    return `<div class="sr-group" data-accent="${g.accent}">${head}${items}</div>`;
   }).join('');
 }
 function openSearch(){ const s=document.getElementById('search'); s.classList.add('on'); const i=document.getElementById('searchInput'); i.value=''; renderSearch(''); setTimeout(()=>i.focus(),60); }
@@ -790,12 +807,12 @@ function openSearchResult(sid,ai){
 }
 buildIndex();
 function wireUI(){
-  document.getElementById('navHome').onclick=()=>{ closeSearch(); showHome(); };
-  document.getElementById('navSearch').onclick=openSearch;
   document.getElementById('searchOpen').onclick=openSearch;
   document.getElementById('searchClose').onclick=closeSearch;
   document.getElementById('searchInput').addEventListener('input',e=>renderSearch(e.target.value));
   document.getElementById('searchResults').addEventListener('click',e=>{
+    const chip=e.target.closest('.sc-chip');
+    if(chip){ const inp=document.getElementById('searchInput'); inp.value=chip.dataset.k; renderSearch(chip.dataset.k); inp.focus(); return; }
     const r=e.target.closest('.sr'); if(r){ openSearchResult(r.dataset.sid, parseInt(r.dataset.ai,10)); }
   });
 }
