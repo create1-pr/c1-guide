@@ -286,7 +286,8 @@ const IMG = {
   taskPicker: "images/task-picker.jpg",    // ファイル選択（モザイク）
   taskFiles: "images/task-files.jpg",    // 課題提出（添付後）
   promo1: "images/promo-1.jpg", promo2: "images/promo-2.jpg", promo3: "images/promo-3.jpg", promo4: "images/promo-4.jpg",
-  promo5: "images/promo-5.jpg"
+  promo5: "images/promo-5.jpg",
+  gekkan1: "images/gekkan-1.jpg", gekkan2: "images/gekkan-2.jpg"
 };
 
 const CONTENT = {
@@ -508,10 +509,21 @@ const CONTENT = {
     { id:"gekkan", icon:"📰", accent:"slate", label:"読むだけでポイントGET", sub:"月刊品保",
       blocks:[
         {type:"lead", text:"品質保証部が発信する月刊お知らせです。読むだけ・クイズでポイントが貯まります。"},
-        {type:"acc", title:"月刊品保とは", blocks:[
+        {type:"acc", group:"使い方", title:"① 月刊品保を開く", blocks:[
+          {type:"lead", text:"下部メニューの「月刊品保」を開くと、最新のレポートが表示されます。"},
+          {type:"shot", img:IMG.gekkan1, cap:"最新のレポート",
+            pins:[{n:1,x:64,y:38}],
+            legend:[{n:1,h:"「レポートを読む」をタップ",p:"最新号のレポートが開きます。"}]}
+        ]},
+        {type:"acc", group:"使い方", title:"② レポートを読む", blocks:[
+          {type:"shot", img:IMG.gekkan2, cap:"レポート記事",
+            pins:[{n:2,x:50,y:24}],
+            legend:[{n:2,h:"記事を読む",p:"記事を読み、記事内のクイズに挑戦するとポイントが貯まります。"}]}
+        ]},
+        {type:"acc", group:"詳細", title:"月刊品保とは", blocks:[
           {type:"lead", text:"エクステ関連の情報発信（クイズあり）や、回収毛のランキング発表などをお届けします。今後もプラスになるコンテンツを追加予定です。"}
         ]},
-        {type:"acc", title:"もらえるポイント", blocks:[
+        {type:"acc", group:"詳細", title:"もらえるポイント", blocks:[
           {type:"rules", rows:[
             ["記事を読む","20pt（毎号）"],
             ["クイズに挑戦","＋10pt"],
