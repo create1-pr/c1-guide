@@ -339,7 +339,7 @@ const CONTENT = {
   services:[
     { id:"curriculum", icon:"🎓", accent:"green", label:"技術を取得", sub:"技術取得サポート",
       blocks:[
-        {type:"html", html:`<details class="cue" open><summary>こんなお悩みは？<span class="cv">▼</span></summary><div class="worry"><div class="wrow"><span class="we">😥</span><div><b>先輩の教える時間がない</b><p>施術で忙しく、新人指導に十分な時間を割けない。</p></div></div><div class="wrow"><span class="we">📋</span><div><b>カリキュラムが整っていない</b><p>無い・更新されていない、というサロンも多い。</p></div></div><div class="wrow"><span class="we">📊</span><div><b>教育基準がバラバラ</b><p>デビューの早さや技術レベルが人によって大きく異なる。</p></div></div><div class="solve"><b>技術取得サポートで、3つの悩みを解決</b><p>この流れがあるから、先輩がつきっきりで教える必要がありません。分からない点はテクニカル部が直接サポートします。<br>サロン内だけでなく、メーカーの基準で技術を確認できます。</p></div></div></details>`},
+        {type:"html", html:`<details class="cue" open><summary>こんなお悩みは？<span class="cv">▼</span></summary><div class="worry"><div class="wrow"><span class="we">😥</span><div><b>先輩の教える時間がない</b><p>施術で忙しく、新人指導に十分な時間を割けない。</p></div></div><div class="wrow"><span class="we">📋</span><div><b>カリキュラムが整っていない</b><p>無い・更新されていない、というサロンも多い。</p></div></div><div class="wrow"><span class="we">📊</span><div><b>教育基準がバラバラ</b><p>デビューの早さや技術レベルが人によって大きく異なる。</p></div></div><div class="solve"><b>技術取得サポートで、3つの悩みを解決</b><p>この流れがあるから、先輩がつきっきりで教える必要がありません。<br>分からない点はテクニカル部が直接サポートします。<br>サロン内だけでなく、メーカーの基準で技術を確認できます。</p></div></div></details>`},
         {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
         {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
           {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
@@ -719,10 +719,6 @@ function renderHome(){
     <div class="hero">
       <h1>${esc(c.brand.title)}</h1>
     </div>
-    <button class="search-trigger" id="searchOpen">
-      <span class="mag">${MAG}</span>
-      <span class="ph">キーワードで検索</span>
-    </button>
     <details class="intro" open>
       <summary>C1アプリ 3つの機能<span class="cv">▼</span></summary>
       <div class="pillars">
@@ -731,6 +727,10 @@ function renderHome(){
         <div class="pillar"><span class="pic">✂️</span><b>動画作成<br>サポート</b><span class="pbadge inv">招待制</span></div>
       </div>
     </details>
+    <button class="search-trigger" id="searchOpen">
+      <span class="mag">${MAG}</span>
+      <span class="ph">キーワードで検索</span>
+    </button>
     <div class="sec-label">サービス・使い方</div>
     <div class="cards">${cards}</div>
     <div class="foot">C1アプリは常にバージョンアップ中のため、仕様が変更になる場合があります。<br>この資料は関係者限定です。</div>
