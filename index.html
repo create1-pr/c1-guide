@@ -101,6 +101,50 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 
 .lead{color:var(--ink2);font-size:14.5px;padding:8px 6px 4px;line-height:1.75}
 .subhead{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink);margin:16px 2px 4px;display:flex;align-items:center;gap:6px}
+/* 意識づけブロック */
+.intro,.cue{margin:0 0 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.intro{margin-bottom:8px}
+.intro>summary,.cue>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:13px 15px;font-family:var(--disp);font-weight:700;font-size:14px;color:var(--ink)}
+.intro>summary::-webkit-details-marker,.cue>summary::-webkit-details-marker{display:none}
+.intro .cv,.cue .cv{margin-left:auto;color:var(--muted);font-size:11px;transition:transform .2s}
+.intro[open] .cv,.cue[open] .cv{transform:rotate(180deg)}
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:2px 12px 14px}
+.pillar{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:7px}
+.pillar .pic{width:44px;height:44px;border-radius:12px;background:var(--surface);display:grid;place-items:center;font-size:22px;border:1px solid var(--line)}
+.pillar b{font-size:12.5px;color:var(--ink);font-family:var(--disp);line-height:1.35}
+.pbadge{font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap;margin-top:1px}
+.pbadge.all{background:#E8F4EC;color:#1c6642}
+.pbadge.inv{background:#FaF1E2;color:#8a5500}
+.cue3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:2px 12px 12px}
+.cue3 .cell{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px}
+.cue3 .cell .ci{width:42px;height:42px;border-radius:12px;background:var(--surface);display:grid;place-items:center;font-size:21px;border:1px solid var(--line)}
+.cue3 .cell b{font-size:12.5px;color:var(--ink);font-family:var(--disp);line-height:1.35}
+.cue3 .cell span{font-size:10.5px;color:var(--ink2);line-height:1.45}
+.cue-foot{margin:0 12px 13px;background:var(--ac-soft,#FaF1E2);border-radius:10px;padding:10px 12px;text-align:center;font-size:12px;font-weight:700;color:var(--ac-ink,#734711)}
+.worry{padding:2px 13px 13px;display:flex;flex-direction:column;gap:8px}
+.worry .wrow{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;background:var(--bg);padding:11px}
+.worry .wrow .we{font-size:17px;line-height:1.2}
+.worry .wrow b{font-size:13px;color:var(--ink)}
+.worry .wrow p{font-size:11.5px;color:var(--ink2);margin-top:2px;line-height:1.5}
+.solve{border-radius:12px;background:var(--ac-soft,#E8F4EC);padding:12px;text-align:center;margin-top:2px}
+.solve b{font-size:13.5px;color:var(--ac-ink,#1c6642);display:block}
+.solve p{font-size:11.5px;color:var(--ac-ink,#1c6642);line-height:1.55;margin-top:5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:2px 12px 12px}
+.two .col{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 11px}
+.two .col .hh{display:flex;align-items:center;gap:7px;margin-bottom:7px;font-size:12.5px;font-weight:700;color:var(--ink2)}
+.two .col .hh .ce{width:26px;height:26px;border-radius:8px;background:var(--surface);display:grid;place-items:center;font-size:15px;border:1px solid var(--line)}
+.two .col p{font-size:11.5px;color:var(--ink2);line-height:1.55}
+.two .col.hl{border-color:var(--ac,#2C9E68);background:var(--ac-soft,#E8F4EC)}
+.two .col.hl .hh,.two .col.hl p{color:var(--ac-ink,#1c6642)}
+.two-foot{margin:0 12px 13px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;text-align:center;font-size:12.5px;font-weight:700;color:var(--ink)}
+.lv{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+.lv .lrow{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 13px}
+.lv .lrow .lhh{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.lv .lrow .lhh .ls{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:800}
+.lv .lrow .lhh b{font-size:13.5px;color:var(--ink)}
+.lv .lrow .lhh .lb{margin-left:auto;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px}
+.lv .lrow p{font-size:11.5px;color:var(--ink2);line-height:1.5}
+
 .grouphead{font-family:var(--disp);font-weight:800;font-size:15px;color:var(--ink);
    margin:24px 2px 2px;display:flex;align-items:center;gap:9px}
 .grouphead::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--ac)}
@@ -295,6 +339,7 @@ const CONTENT = {
   services:[
     { id:"curriculum", icon:"🎓", accent:"green", label:"技術を取得", sub:"技術取得サポート",
       blocks:[
+        {type:"html", html:`<details class="cue" open><summary>こんなお悩みは？<span class="cv">▼</span></summary><div class="worry"><div class="wrow"><span class="we">😥</span><div><b>先輩の教える時間がない</b><p>施術で忙しく、新人指導に十分な時間を割けない。</p></div></div><div class="wrow"><span class="we">📋</span><div><b>カリキュラムが整っていない</b><p>無い・更新されていない、というサロンも多い。</p></div></div><div class="wrow"><span class="we">📊</span><div><b>教育基準がバラバラ</b><p>デビューの早さや技術レベルが人によって大きく異なる。</p></div></div><div class="solve"><b>技術取得サポートで、3つの悩みを解決</b><p>この流れがあるから、先輩がつきっきりで教える必要がありません。分からない点はテクニカル部が直接サポートします。<br>サロン内だけでなく、メーカーの基準で技術を確認できます。</p></div></div></details>`},
         {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
         {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
           {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
@@ -309,7 +354,7 @@ const CONTENT = {
           {type:"note", text:"【入門】は一覧の順番通りに受講。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"}
         ]},
         {type:"acc", group:"使い方", title:"② 動画を視聴する", blocks:[
-          {type:"lead", text:"動画を最後まで視聴すると受講完了になります。"},
+          {type:"lead", text:"動画を最後まで視聴すると受講完了になります。手順はいつでも見返せます。"},
           {type:"carousel", items:[
             {img:IMG.currVideo, cap:"動画の再生",
               pins:[{n:1,x:50,y:40}],
@@ -318,7 +363,7 @@ const CONTENT = {
           ]}
         ]},
         {type:"acc", group:"使い方", title:"③ クイズに回答する", blocks:[
-          {type:"lead", text:"全問正解すると受講完了になります。"},
+          {type:"lead", text:"全問正解すると受講完了になります。空いた時間に、自分のペースで知識を確認できます。"},
           {type:"carousel", items:[
             {img:IMG.currQuiz, cap:"回答を選ぶ",
               pins:[{n:1,x:50,y:95}],
@@ -362,12 +407,8 @@ const CONTENT = {
         ]},
         {type:"acc", group:"詳細", title:"カリキュラムの構成", blocks:[
           {type:"lead", text:"入門・基礎・応用・エキスパートの4レベルで構成。現在は【入門】のみ公開中です。"},
-          {type:"rules", rows:[
-            ["コンテンツ","動画視聴／クイズ／課題提出の3種"],
-            ["動画視聴","動画を視聴して学ぶ"],
-            ["クイズ","知識が正しいかを確認"],
-            ["課題提出","技術が正しいかを確認"]
-          ]}
+          {type:"html", html:`<div class="lv"><div class="lrow"><div class="lhh"><span class="ls" style="background:#E8F4EC;color:#1c6642">★</span><b>入門</b><span class="lb" style="background:#EDEFF3;color:#39404f">新人用</span></div><p>入客に必要最低限の知識と技術を学ぶ</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#EBEEFB;color:#293b8f">★</span><b>基礎</b><span class="lb" style="background:#EBEEFB;color:#293b8f">ベーシック検定</span></div><p>プレイヤーとして、知識・技術・カウンセリングの基礎を学ぶ</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#FaF1E2;color:#734711">★</span><b>応用</b><span class="lb" style="background:#FaF1E2;color:#734711">テクニック検定</span></div><p>デザイナーとして、馴染み・スピード・仕上げの力を伸ばす</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#F7E3EA;color:#a5285f">★</span><b>エキスパート</b><span class="lb" style="background:#F7E3EA;color:#a5285f">マスター試験</span></div><p>プルエクステ完全攻略のエキスパートを目指す</p></div></div>`},
+          {type:"note", text:"検定に受かるとポイントの獲得倍率が上がります。各レベルがその検定の対策になっています。"}
         ]},
         {type:"acc", group:"詳細", title:"受講の完了条件", blocks:[
           {type:"rules", rows:[
@@ -379,8 +420,10 @@ const CONTENT = {
       ]},
     { id:"sns", icon:"📱", accent:"amber", label:"動画申請でポイントGET", sub:"SNS投稿促進サポート",
       blocks:[
+        {type:"html", html:`<details class="cue" open><summary>なぜ今、ショート動画なの？<span class="cv">▼</span></summary><div class="cue3"><div class="cell"><span class="ci">🔍</span><b>見つけて<br>もらえる</b><span>新規のお客様に動画が届く</span></div><div class="cell"><span class="ci">💛</span><b>指名に<br>つながる</b><span>「この人に」を生む</span></div><div class="cell"><span class="ci">📱</span><b>元手が<br>いらない</b><span>スマホ1台で今日から</span></div></div></details>`},
         {type:"lead", tid:"sns.lead", text:"投稿するだけでポイントが貯まり、特典に交換できます。"},
         {type:"acc", group:"使い方", nav:"仕組み", tid:"sns.kumi.title", title:"仕組み（3ステップ）", blocks:[
+          {type:"html", html:`<details class="cue" open><summary>なぜ、その場でポイント？<span class="cv">▼</span></summary><div class="two"><div class="col"><div class="hh"><span class="ce">😟</span>課題</div><p>投稿しても集客につながるまで時差がある。すぐ結果が見えず、投稿が続かない。</p></div><div class="col hl"><div class="hh"><span class="ce">⚡</span>打ち手</div><p>動画1本につき100ptをその場で付与。手応えがすぐ得られ、投稿が習慣になる。</p></div></div><div class="two-foot">集客の結果は後から。ポイントは今日返ってきます。</div></details>`},
           {type:"steps", steps:[
             {h:"SNSに投稿", tidH:"sns.kumi.s1h", p:"TikTok・Instagram・YouTube に動画を投稿します。", tidP:"sns.kumi.s1p"},
             {h:"ポイント獲得", tidH:"sns.kumi.s2h", p:"動画1本につき100pt。有効期限は付与日から1年。", tidP:"sns.kumi.s2p"},
@@ -431,6 +474,7 @@ const CONTENT = {
       ]},
     { id:"edit", icon:"✂️", accent:"indigo", label:"動画編集を依頼", sub:"動画作成サポート／一部の方のみ利用可能なサービスです",
       blocks:[
+        {type:"html", html:`<details class="cue" open><summary>撮影・投稿だけでOK<span class="cv">▼</span></summary><div class="cue3"><div class="cell"><span class="ci">✂️</span><b>編集は<br>おまかせ</b><span>面倒な編集はプロが担当</span></div><div class="cell"><span class="ci">🎬</span><b>撮影と<br>投稿だけ</b><span>続かない原因の編集負担をゼロに</span></div><div class="cell"><span class="ci">💰</span><b>費用は<br>無料</b><span>外注なら1本3〜5千円が0円</span></div></div><div class="cue-foot">「作る負担」ごと、C1が引き受けます</div></details>`},
         {type:"lead", text:"撮影・投稿だけでOK。面倒な編集はプロにおまかせします。"},
         {type:"acc", group:"使い方", title:"① 依頼する（動画アップロード）", blocks:[
           {type:"note", text:"先に『詳細』タブのサービス詳細を確認してください。"},
@@ -642,6 +686,7 @@ function shotHtml(b){
   return `<div class="shot-wrap"><div class="shot"><img src="${b.img}" alt="操作画面">${pins}</div>${cap?`<div class="shot-cap">${esc(cap)}</div>`:''}</div>${leg?`<div class="legend">${leg}</div>`:''}`;
 }
 function block(b){
+  if(b.type==="html") return b.html;
   if(b.type==="lead") return `<p class="lead">${esc(T(b.tid,b.text))}</p>`;
   if(b.type==="note") return `<div class="note ${b.tone==='warn'?'warn':''}"><span class="i">${b.tone==='warn'?'!':'i'}</span><p>${esc(T(b.tid,b.text))}</p></div>`;
   if(b.type==="subhead") return `<div class="subhead">${esc(b.text)}</div>`;
@@ -678,6 +723,14 @@ function renderHome(){
       <span class="mag">${MAG}</span>
       <span class="ph">キーワードで検索</span>
     </button>
+    <details class="intro" open>
+      <summary>C1アプリ 3つの機能<span class="cv">▼</span></summary>
+      <div class="pillars">
+        <div class="pillar"><span class="pic">🎓</span><b>技術取得<br>サポート</b><span class="pbadge all">全スタッフ</span></div>
+        <div class="pillar"><span class="pic">📱</span><b>SNS投稿<br>促進サポート</b><span class="pbadge all">全スタッフ</span></div>
+        <div class="pillar"><span class="pic">✂️</span><b>動画作成<br>サポート</b><span class="pbadge inv">招待制</span></div>
+      </div>
+    </details>
     <div class="sec-label">サービス・使い方</div>
     <div class="cards">${cards}</div>
     <div class="foot">C1アプリは常にバージョンアップ中のため、仕様が変更になる場合があります。<br>この資料は関係者限定です。</div>
