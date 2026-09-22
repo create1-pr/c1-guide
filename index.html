@@ -100,6 +100,7 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 .topbar-search svg{width:20px;height:20px}
 
 .lead{color:var(--ink2);font-size:14.5px;padding:8px 6px 4px;line-height:1.75}
+.subhead{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink);margin:16px 2px 4px;display:flex;align-items:center;gap:6px}
 .grouphead{font-family:var(--disp);font-weight:800;font-size:15px;color:var(--ink);
    margin:24px 2px 2px;display:flex;align-items:center;gap:9px}
 .grouphead::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--ac)}
@@ -291,7 +292,91 @@ const IMG = {
 const CONTENT = {
   brand:{ title:"C1アプリ 使い方ガイド" },
   services:[
-    { id:"sns", icon:"📱", accent:"amber", label:"SNS動画投稿", sub:"動画を投稿してポイント獲得",
+    { id:"curriculum", icon:"🎓", accent:"green", label:"技術を取得", sub:"技術取得サポート",
+      blocks:[
+        {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
+        {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
+          {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
+          {type:"carousel", items:[
+            {img:IMG.currLevels, cap:"技術カリキュラム（レベル一覧）",
+              pins:[{n:1,x:30,y:40}],
+              legend:[{n:1,h:"レベルを選ぶ",p:"現在は【入門】のみ公開中。実施したいレベルをタップ。"}]},
+            {img:IMG.currList, cap:"進捗・次の受講案内・カリキュラム一覧",
+              pins:[{n:1,x:50,y:37}],
+              legend:[{n:1,h:"カリキュラムを受講",p:"「このカリキュラムを受講する」から開始します。"}]}
+          ]},
+          {type:"note", text:"【入門】は一覧の順番通りに受講。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"}
+        ]},
+        {type:"acc", group:"使い方", title:"② 動画を視聴する", blocks:[
+          {type:"lead", text:"動画を最後まで視聴すると受講完了になります。"},
+          {type:"carousel", items:[
+            {img:IMG.currVideo, cap:"動画の再生",
+              pins:[{n:1,x:50,y:40}],
+              legend:[{n:1,h:"再生ボタンをタップ",p:"全画面で見る場合は右上の拡大ボタン。"}]},
+            {img:IMG.currVideoFull, cap:"全画面表示。最後まで見ると「視聴済み」に"}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"③ クイズに回答する", blocks:[
+          {type:"lead", text:"全問正解すると受講完了になります。"},
+          {type:"carousel", items:[
+            {img:IMG.currQuiz, cap:"回答を選ぶ",
+              pins:[{n:1,x:50,y:95}],
+              legend:[{n:1,h:"回答して「回答する」",p:"選択肢を選び「回答する」をタップ。"}]},
+            {img:IMG.currQuizAns, cap:"正誤を確認",
+              pins:[{n:1,x:50,y:95}],
+              legend:[{n:1,h:"「次の問題へ」",p:"正誤を確認して次に進みます。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"④ 課題を提出する", blocks:[
+          {type:"lead", text:"動画・画像を提出して技術を確認してもらいます。課題画面には「この課題でやること」と「合格の目安」が表示されます。"},
+          {type:"carousel", items:[
+            {img:IMG.taskSubmit, cap:"課題提出の画面",
+              pins:[{n:1,x:50,y:77}],
+              legend:[{n:1,h:"「＋動画・画像を提出する」",p:"緑のボタンをタップします。"}]},
+            {img:IMG.taskPicker, cap:"画像・動画の選択",
+              pins:[{n:2,x:50,y:45},{n:3,x:92,y:13}],
+              legend:[
+                {n:2,h:"ファイルを選択",p:"提出する写真・動画を選びます（複数可）。"},
+                {n:3,h:"右上で決定",p:"iPhoneは右上の✓、Androidは「選択」をタップ。"}
+              ]},
+            {img:IMG.taskFiles, cap:"メモ入力・提出",
+              pins:[{n:4,x:50,y:77},{n:5,x:50,y:85}],
+              legend:[
+                {n:4,h:"メモに必要事項を記入",p:"必要事項があれば「メモ（任意）」に入力（＋ファイル追加も可）。"},
+                {n:5,h:"「この内容で提出する」",p:"提出するとGoogle Chatにテクニカル部からアドバイスが届きます。"}
+              ]}
+          ]},
+          {type:"note", text:"課題の合否・フィードバックは、アプリ内ではなくGoogleスペースでお返しします。提出後はGoogleスペースをご確認ください。"}
+        ]},
+        {type:"acc", group:"使い方", title:"⑤ 進捗を確認する（技術カルテ）", blocks:[
+          {type:"lead", text:"「技術カルテ」で進捗状況が一目でわかります。"},
+          {type:"carousel", items:[
+            {img:IMG.currLevels, cap:"下タブ「依頼・相談」→「技術カルテ」",
+              pins:[{n:1,x:50,y:78}],
+              legend:[{n:1,h:"「技術カルテ」をタップ",p:"下タブ「依頼・相談」→「技術カルテ」の順にタップ。"}]},
+            {img:IMG.currKarte, cap:"進捗・全国ランキング",
+              pins:[{n:1,x:40,y:40}],
+              legend:[{n:1,h:"進捗と順位を確認",p:"各カリキュラムの進捗状況・全国ランキングが見られます。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"カリキュラムの構成", blocks:[
+          {type:"lead", text:"入門・基礎・応用・エキスパートの4レベルで構成。現在は【入門】のみ公開中です。"},
+          {type:"rules", rows:[
+            ["コンテンツ","動画視聴／クイズ／課題提出の3種"],
+            ["動画視聴","動画を視聴して学ぶ"],
+            ["クイズ","知識が正しいかを確認"],
+            ["課題提出","技術が正しいかを確認"]
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"受講の完了条件", blocks:[
+          {type:"rules", rows:[
+            ["動画視聴","最後まで視聴で完了（「視聴済み」に）"],
+            ["クイズ","全問正解で完了"],
+            ["受講順","入門は順番通り／基礎・応用・エキスパートは選択可"]
+          ]}
+        ]}
+      ]},
+    { id:"sns", icon:"📱", accent:"amber", label:"動画申請でポイントGET", sub:"SNS投稿促進サポート",
       blocks:[
         {type:"lead", tid:"sns.lead", text:"投稿するだけでポイントが貯まり、特典に交換できます。"},
         {type:"acc", group:"使い方", nav:"仕組み", tid:"sns.kumi.title", title:"仕組み（3ステップ）", blocks:[
@@ -302,6 +387,7 @@ const CONTENT = {
           ]}
         ]},
         {type:"acc", group:"使い方", nav:"報告", tid:"sns.report.title", title:"使い方：投稿URLの報告", blocks:[
+          {type:"note", text:"ポイントの対象になる動画は『詳細』タブから確認できます。"},
           {type:"lead", tid:"sns.report.lead", text:"投稿したら、アプリで動画URLを報告するだけ。2ステップで完了です。"},
           {type:"shot", img:IMG.urlReport, cap:"画面下の「投稿動画共有」タブから開けます", tidCap:"sns.report.cap",
             pins:[{n:1,x:50,y:34},{n:2,x:50,y:44.5}],
@@ -311,26 +397,127 @@ const CONTENT = {
             ]}
         ]},
         {type:"acc", group:"詳細", nav:"投稿ルール", tid:"sns.rule.title", title:"投稿動画のルール", blocks:[
+          {type:"subhead", text:"🎬 投稿前｜動画をつくるときのルール"},
           {type:"steps", check:true, steps:[
-            {h:"訴求動画であること", tidH:"sns.rule.1h", p:"プルエクステ／プルシールの魅力を伝える動画。", tidP:"sns.rule.1p"},
-            {h:"#プルエクステ をつける", tidH:"sns.rule.2h", p:"投稿時に必ずハッシュタグを付ける。", tidP:"sns.rule.2p"},
-            {h:"再アップ動画はNG", tidH:"sns.rule.3h", p:"過去に投稿した動画の再アップロードは禁止。", tidP:"sns.rule.3p"},
-            {h:"マイナスプロモはNG", tidH:"sns.rule.4h", p:"ブランドイメージを下げる内容は禁止。", tidP:"sns.rule.4p"},
-            {h:"15秒以上の動画", tidH:"sns.rule.5h", p:"15秒未満は対象外です。", tidP:"sns.rule.5p"},
-            {h:"投稿から1週間以内に申請", tidH:"sns.rule.6h", p:"期限を過ぎると対象外です。", tidP:"sns.rule.6p"}
-          ]}
+            {h:"訴求動画であること", p:"プルエクステ／プルシールの魅力を伝える動画。"},
+            {h:"15秒以上の動画", p:"15秒未満は対象外です。"},
+            {h:"マイナスプロモはNG", p:"ブランドイメージを下げる内容は禁止。"}
+          ]},
+          {type:"subhead", text:"📲 投稿時｜投稿するときのルール"},
+          {type:"steps", check:true, steps:[
+            {h:"過去動画の再アップはNG", p:"過去に投稿した動画の再アップロードは禁止。"},
+            {h:"#プルエクステ をつける", p:"投稿時に必ずハッシュタグを付ける。"}
+          ]},
+          {type:"subhead", text:"✅ 投稿後｜やること"},
+          {type:"steps", check:true, steps:[
+            {h:"投稿から1週間以内に申請", p:"期限を過ぎると対象外です。"}
+          ]},
+          {type:"note", text:"同じ動画を複数媒体に投稿した場合は、それぞれのURLを個別に申請してください。"}
         ]},
         {type:"acc", group:"詳細", nav:"ポイント", tid:"sns.point.title", title:"ポイント付与について", blocks:[
           {type:"rules", rows:[
             ["付与ポイント","動画1本 = 100pt","sns.point.r1"],
             ["対応SNS","TikTok / Instagram / YouTube","sns.point.r2"],
             ["月の申請上限","300件／毎月リセット","sns.point.r3"]
-          ]}
+          ]},
+          {type:"note", text:"同じ動画を3媒体に投稿すれば、それぞれ100ptずつ。1動画で最大300pt（ディプロマごとに変動あり）です。"}
         ]},
         {type:"acc", group:"詳細", nav:"倍率", tid:"sns.bairitsu.title", title:"ディプロマ優遇（獲得倍率）", blocks:[
           {type:"rules", rows:[
             ["資格なし","1.0倍","sns.bairitsu.r1"],["ベーシック","1.1倍","sns.bairitsu.r2"],["テクニック","1.2倍","sns.bairitsu.r3"],["マスター","1.3倍","sns.bairitsu.r4"]
           ]}
+        ]}
+      ]},
+    { id:"edit", icon:"✂️", accent:"indigo", label:"動画編集を依頼", sub:"動画作成サポート／一部の方のみ利用可能なサービスです",
+      blocks:[
+        {type:"lead", text:"撮影・投稿だけでOK。面倒な編集はプロにおまかせします。"},
+        {type:"acc", group:"使い方", title:"① 依頼する（動画アップロード）", blocks:[
+          {type:"note", text:"先に『詳細』タブのサービス詳細を確認してください。"},
+          {type:"lead", text:"「依頼・相談」タブの新規タスクから「動画アップロード」を選びます。"},
+          {type:"carousel", items:[
+            {img:IMG.editDash, cap:"「依頼・相談」タブ →「＋ 新規タスク」",
+              pins:[{n:1,x:75,y:87}],
+              legend:[{n:1,h:"「＋ 新規タスク」をタップ",p:"画面右下のボタンから。"}]},
+            {img:IMG.editRequest, cap:"新規リクエスト",
+              pins:[{n:1,x:50,y:88}],
+              legend:[{n:1,h:"「動画アップロード」を選択",p:"素材動画の編集依頼です。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"② 動画をアップロード", blocks:[
+          {type:"lead", text:"撮影した動画を選んでアップロードします。"},
+          {type:"subhead", text:"⚠️ アップロード時の注意点"},
+          {type:"note", tone:"warn", text:"同じお客様の一連の施術で撮影した素材は、必要なものを全て同時に選択してアップロードしてください。あとから追加で送ることはできません。"},
+          {type:"shot", img:IMG.editUpload, cap:"動画のアップロード",
+            pins:[{n:1,x:50,y:26},{n:2,x:50,y:48},{n:3,x:50,y:96}],
+            legend:[
+              {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ（複数可）。"},
+              {n:2,h:"タイトル・要望を入力（任意）",p:"必要なら「タイトル」や「編集のご要望」を入力します。"},
+              {n:3,h:"「処理を開始する」",p:"タップでアップロード開始。"}
+            ]},
+          {type:"subhead", text:"困った時は"},
+          {type:"note", text:"素材を入れ忘れた、誤った素材を送ってしまったなど、お困りの際は担当営業までお問い合わせください。"}
+        ]},
+        {type:"acc", group:"使い方", title:"③ 進捗を確認", blocks:[
+          {type:"lead", text:"アップロード後は「制作中の動画」で状況を確認できます。"},
+          {type:"carousel", items:[
+            {img:IMG.editProgress, cap:"制作中は「進行中」",
+              pins:[{n:1,x:34,y:52}],
+              legend:[{n:1,h:"制作中は「進行中」",p:"制作が進むと「進行中」と表示されます。"}]},
+            {img:IMG.editDone, cap:"完成すると「完了」",
+              pins:[{n:1,x:33,y:49}],
+              legend:[{n:1,h:"完成したら「完了」",p:"完成すると「完了」と表示されます。"}]}
+          ]}
+        ]},
+        {type:"acc", group:"詳細", title:"サービス詳細", blocks:[
+          {type:"rules", rows:[
+            ["利用費用","無料"],
+            ["納期","依頼から最大10営業日以内"]
+          ]},
+          {type:"subhead", text:"対象素材"},
+          {type:"steps", check:true, steps:[
+            {h:"動画素材の合計時間が5分以上あること", p:""},
+            {h:"プルエクステ/プルシールの施術動画であること", p:""},
+            {h:"希望の色や本数のヒヤリングなど、カウンセリングのやり取りが合わせて1分以上あること", p:""},
+            {h:"ビフォーとアフター両方のシーンが含まれていること", p:""},
+            {h:"会話が聞き取れること", p:""}
+          ]},
+          {type:"rules", rows:[
+            ["月ノルマ","あり（詳細は別途）"],
+            ["投稿義務","完成後は必ずTikTokとYouTubeに投稿（Instagramは任意）"],
+            ["プロモート","TikTok投稿にC1側でプロモートを実施"],
+            ["顔・体型加工","対応不可"],
+            ["修正","原則対応不可"]
+          ]}
+        ]},
+        {type:"acc", group:"使い方", title:"BGMについて", blocks:[
+          {type:"lead", text:"納品された動画にBGMは付いていません。必要な場合は自分で付けてください。"},
+          {type:"note", tone:"warn", text:"TikTokでプロモートをかける場合は、商用利用が可能な楽曲を選んでください。"},
+          {type:"note", text:"プロモートをかけない（かからなくても問題ない）場合は、楽曲の種類は気にしなくてOKです。"}
+        ]},
+        {type:"acc", group:"使い方", title:"投稿の報告について", blocks:[
+          {type:"lead", text:"投稿が完了したら、SNS動画投稿の「使い方：投稿URLの報告」と同じ手順で報告します。"}
+        ]},
+        {type:"acc", group:"詳細", title:"ポイント対象の動画", blocks:[
+          {type:"rules", rows:[
+            ["編集代行で作った動画","対象外（URL報告は必要）"],
+            ["自分で作った動画","対象（1本100pt）"]
+          ]},
+          {type:"note", text:"報告は「投稿動画共有」から。操作は共通です。"}
+        ]}
+      ]},
+    { id:"gekkan", icon:"📰", accent:"slate", label:"読むだけでポイントGET", sub:"月刊品保",
+      blocks:[
+        {type:"lead", text:"品質保証部が発信する月刊お知らせです。読むだけ・クイズでポイントが貯まります。"},
+        {type:"acc", title:"月刊品保とは", blocks:[
+          {type:"lead", text:"エクステ関連の情報発信（クイズあり）や、回収毛のランキング発表などをお届けします。今後もプラスになるコンテンツを追加予定です。"}
+        ]},
+        {type:"acc", title:"もらえるポイント", blocks:[
+          {type:"rules", rows:[
+            ["記事を読む","20pt（毎号）"],
+            ["クイズに挑戦","＋10pt"],
+            ["クイズに正解","＋20pt"]
+          ]},
+          {type:"note", text:"クイズがある号のみ、挑戦・正解でポイントが加算されます（読むだけでも20pt）。"}
         ]}
       ]},
     { id:"exchange", icon:"🎁", accent:"teal", label:"ポイント（確認・交換）", sub:"貯めたポイントの管理",
@@ -404,156 +591,6 @@ const CONTENT = {
             legend:[{n:1,h:"期間を選ぶ",p:"今月／上半期／下半期／年間で切り替えられます。"}]}
         ]}
       ]},
-    { id:"edit", icon:"✂️", accent:"indigo", label:"編集代行", sub:"招待制 ／ 一部の方のみ利用可能なサービスです",
-      blocks:[
-        {type:"lead", text:"撮影・投稿だけでOK。面倒な編集はプロにおまかせします。"},
-        {type:"acc", group:"使い方", title:"① 依頼する（動画アップロード）", blocks:[
-          {type:"lead", text:"「依頼・相談」タブの新規タスクから「動画アップロード」を選びます。"},
-          {type:"carousel", items:[
-            {img:IMG.editDash, cap:"「依頼・相談」タブ →「＋ 新規タスク」",
-              pins:[{n:1,x:75,y:87}],
-              legend:[{n:1,h:"「＋ 新規タスク」をタップ",p:"画面右下のボタンから。"}]},
-            {img:IMG.editRequest, cap:"新規リクエスト",
-              pins:[{n:1,x:50,y:88}],
-              legend:[{n:1,h:"「動画アップロード」を選択",p:"素材動画の編集依頼です。"}]}
-          ]}
-        ]},
-        {type:"acc", group:"使い方", title:"② 動画をアップロード", blocks:[
-          {type:"lead", text:"撮影した動画を選んでアップロードします。"},
-          {type:"shot", img:IMG.editUpload, cap:"動画のアップロード",
-            pins:[{n:1,x:50,y:26},{n:2,x:50,y:48},{n:3,x:50,y:96}],
-            legend:[
-              {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ（複数可）。"},
-              {n:2,h:"タイトル・要望を入力（任意）",p:"必要なら「タイトル」や「編集のご要望」を入力します。"},
-              {n:3,h:"「処理を開始する」",p:"タップでアップロード開始。"}
-            ]},
-          {type:"lead", text:"アップロード時の注意点:"},
-          {type:"steps", check:true, steps:[
-            {h:"必要な動画は同時に選択", p:"分割された撮影動画は、必要な動画を全て同時に選択。"},
-            {h:"アップロード中はアプリを閉じない", p:"完了までそのまま待ちます。"},
-            {h:"合計5分以上をアップロード", p:"撮影動画の合計が5分以上になるように。"}
-          ]}
-        ]},
-        {type:"acc", group:"使い方", title:"③ 進捗を確認", blocks:[
-          {type:"lead", text:"アップロード後は「制作中の動画」で状況を確認できます。"},
-          {type:"carousel", items:[
-            {img:IMG.editProgress, cap:"制作中は「進行中」",
-              pins:[{n:1,x:34,y:52}],
-              legend:[{n:1,h:"制作中は「進行中」",p:"制作が進むと「進行中」と表示されます。"}]},
-            {img:IMG.editDone, cap:"完成すると「完了」",
-              pins:[{n:1,x:33,y:49}],
-              legend:[{n:1,h:"完成したら「完了」",p:"完成すると「完了」と表示されます。"}]}
-          ]}
-        ]},
-        {type:"acc", group:"詳細", title:"サービス詳細", blocks:[
-          {type:"rules", rows:[
-            ["利用費用","無料"],
-            ["納期","依頼から最大10営業日以内"],
-            ["対象素材","プルエクステのカウンセリング動画のみ"],
-            ["月ノルマ","あり（詳細は別途）"],
-            ["投稿義務","完成後は必ずTikTokとYouTubeに投稿"],
-            ["プロモート","TikTok投稿にのみ実施"]
-          ]}
-        ]},
-        {type:"acc", group:"使い方", title:"BGMについて", blocks:[
-          {type:"lead", text:"納品された動画にBGMは付いていません。必要な場合は自分で付けてください。"},
-          {type:"note", tone:"warn", text:"TikTokでプロモートをかける場合は、商用利用が可能な楽曲を選んでください。"},
-          {type:"note", text:"プロモートをかけない（かからなくても問題ない）場合は、楽曲の種類は気にしなくてOKです。"}
-        ]},
-        {type:"acc", group:"詳細", title:"投稿の報告について", blocks:[
-          {type:"lead", text:"投稿が完了したら、SNS動画投稿の「使い方：投稿URLの報告」と同じ手順で報告します。"}
-        ]},
-        {type:"acc", group:"詳細", title:"ポイント対象の動画", blocks:[
-          {type:"rules", rows:[
-            ["編集代行で作った動画","対象外（URL報告は必要）"],
-            ["自分で作った動画","対象（1本100pt）"]
-          ]},
-          {type:"note", text:"報告は「投稿動画共有」から。操作は共通です。"}
-        ]}
-      ]},
-    { id:"curriculum", icon:"🎓", accent:"green", label:"技術カリキュラム", sub:"2ヶ月でデビュー",
-      blocks:[
-        {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
-        {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
-          {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
-          {type:"carousel", items:[
-            {img:IMG.currLevels, cap:"技術カリキュラム（レベル一覧）",
-              pins:[{n:1,x:30,y:40}],
-              legend:[{n:1,h:"レベルを選ぶ",p:"現在は【入門】のみ公開中。実施したいレベルをタップ。"}]},
-            {img:IMG.currList, cap:"進捗・次の受講案内・カリキュラム一覧",
-              pins:[{n:1,x:50,y:37}],
-              legend:[{n:1,h:"カリキュラムを受講",p:"「このカリキュラムを受講する」から開始します。"}]}
-          ]},
-          {type:"note", text:"【入門】は一覧の順番通りに受講。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"}
-        ]},
-        {type:"acc", group:"使い方", title:"② 動画を視聴する", blocks:[
-          {type:"lead", text:"動画を最後まで視聴すると受講完了になります。"},
-          {type:"carousel", items:[
-            {img:IMG.currVideo, cap:"動画の再生",
-              pins:[{n:1,x:50,y:40}],
-              legend:[{n:1,h:"再生ボタンをタップ",p:"全画面で見る場合は右上の拡大ボタン。"}]},
-            {img:IMG.currVideoFull, cap:"全画面表示。最後まで見ると「視聴済み」に"}
-          ]}
-        ]},
-        {type:"acc", group:"使い方", title:"③ クイズに回答する", blocks:[
-          {type:"lead", text:"全問正解すると受講完了になります。"},
-          {type:"carousel", items:[
-            {img:IMG.currQuiz, cap:"回答を選ぶ",
-              pins:[{n:1,x:50,y:95}],
-              legend:[{n:1,h:"回答して「回答する」",p:"選択肢を選び「回答する」をタップ。"}]},
-            {img:IMG.currQuizAns, cap:"正誤を確認",
-              pins:[{n:1,x:50,y:95}],
-              legend:[{n:1,h:"「次の問題へ」",p:"正誤を確認して次に進みます。"}]}
-          ]}
-        ]},
-        {type:"acc", group:"使い方", title:"④ 課題を提出する", blocks:[
-          {type:"lead", text:"動画・画像を提出して技術を確認してもらいます。課題画面には「この課題でやること」と「合格の目安」が表示されます。"},
-          {type:"carousel", items:[
-            {img:IMG.taskSubmit, cap:"課題提出の画面",
-              pins:[{n:1,x:50,y:77}],
-              legend:[{n:1,h:"「＋動画・画像を提出する」",p:"緑のボタンをタップします。"}]},
-            {img:IMG.taskPicker, cap:"画像・動画の選択",
-              pins:[{n:2,x:50,y:45},{n:3,x:92,y:13}],
-              legend:[
-                {n:2,h:"ファイルを選択",p:"提出する写真・動画を選びます（複数可）。"},
-                {n:3,h:"右上で決定",p:"iPhoneは右上の✓、Androidは「選択」をタップ。"}
-              ]},
-            {img:IMG.taskFiles, cap:"メモ入力・提出",
-              pins:[{n:4,x:50,y:77},{n:5,x:50,y:85}],
-              legend:[
-                {n:4,h:"メモに必要事項を記入",p:"必要事項があれば「メモ（任意）」に入力（＋ファイル追加も可）。"},
-                {n:5,h:"「この内容で提出する」",p:"提出するとGoogle Chatにテクニカル部からアドバイスが届きます。"}
-              ]}
-          ]}
-        ]},
-        {type:"acc", group:"使い方", title:"⑤ 進捗を確認する（技術カルテ）", blocks:[
-          {type:"lead", text:"「技術カルテ」で進捗状況が一目でわかります。"},
-          {type:"carousel", items:[
-            {img:IMG.currLevels, cap:"下タブ「依頼・相談」→「技術カルテ」",
-              pins:[{n:1,x:50,y:78}],
-              legend:[{n:1,h:"「技術カルテ」をタップ",p:"下タブ「依頼・相談」→「技術カルテ」の順にタップ。"}]},
-            {img:IMG.currKarte, cap:"進捗・全国ランキング",
-              pins:[{n:1,x:40,y:40}],
-              legend:[{n:1,h:"進捗と順位を確認",p:"各カリキュラムの進捗状況・全国ランキングが見られます。"}]}
-          ]}
-        ]},
-        {type:"acc", group:"詳細", title:"カリキュラムの構成", blocks:[
-          {type:"lead", text:"入門・基礎・応用・エキスパートの4レベルで構成。現在は【入門】のみ公開中です。"},
-          {type:"rules", rows:[
-            ["コンテンツ","動画視聴／クイズ／課題提出の3種"],
-            ["動画視聴","動画を視聴して学ぶ"],
-            ["クイズ","知識が正しいかを確認"],
-            ["課題提出","技術が正しいかを確認"]
-          ]}
-        ]},
-        {type:"acc", group:"詳細", title:"受講の完了条件", blocks:[
-          {type:"rules", rows:[
-            ["動画視聴","最後まで視聴で完了（「視聴済み」に）"],
-            ["クイズ","全問正解で完了"],
-            ["受講順","入門は順番通り／基礎・応用・エキスパートは選択可"]
-          ]}
-        ]}
-      ]},
     { id:"register", icon:"🚀", accent:"slate", label:"アプリの登録方法", sub:"インストール・ログイン",
       blocks:[
         {type:"lead", text:"アプリをインストールして、ログインするだけ。2ステップで完了です。"},
@@ -595,6 +632,7 @@ function shotHtml(b){
 function block(b){
   if(b.type==="lead") return `<p class="lead">${esc(T(b.tid,b.text))}</p>`;
   if(b.type==="note") return `<div class="note ${b.tone==='warn'?'warn':''}"><span class="i">${b.tone==='warn'?'!':'i'}</span><p>${esc(T(b.tid,b.text))}</p></div>`;
+  if(b.type==="subhead") return `<div class="subhead">${esc(b.text)}</div>`;
   if(b.type==="linkbtn") return `<a class="linkbtn" href="${esc(b.href)}" target="_blank" rel="noopener">${esc(b.label)}</a>`;
   if(b.type==="qr") return `<div class="qrbox"><img src="${b.img}" alt="QRコード">${b.cap?`<small>${esc(b.cap)}</small>`:''}</div>`;
   if(b.type==="rules") return `<div class="rules">${b.rows.map(r=>`<div class="row"><span class="l">${esc(r[0])}</span><span class="v">${esc(T(r[2],r[1]))}</span></div>`).join('')}</div>`;
