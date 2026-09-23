@@ -101,6 +101,7 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 
 .lead{color:var(--ink2);font-size:14.5px;padding:8px 6px 4px;line-height:1.75}
 .subhead{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink);margin:16px 2px 4px;display:flex;align-items:center;gap:6px}
+.acc.locked>summary{pointer-events:none;cursor:default}
 /* 意識づけブロック */
 .intro,.cue{margin:0 0 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .intro{margin-bottom:8px}
@@ -144,6 +145,7 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 .lv .lrow .lhh b{font-size:13.5px;color:var(--ink)}
 .lv .lrow .lhh .lb{margin-left:auto;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px}
 .lv .lrow p{font-size:11.5px;color:var(--ink2);line-height:1.5}
+.lv .lrow .lsoon{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;background:#EDEFF3;color:#39404f;line-height:1.6}
 
 .grouphead{font-family:var(--disp);font-weight:800;font-size:15px;color:var(--ink);
    margin:24px 2px 2px;display:flex;align-items:center;gap:9px}
@@ -331,7 +333,8 @@ const IMG = {
   taskFiles: "images/task-files.jpg",    // 課題提出（添付後）
   promo1: "images/promo-1.jpg", promo2: "images/promo-2.jpg", promo3: "images/promo-3.jpg", promo4: "images/promo-4.jpg",
   promo5: "images/promo-5.jpg",
-  gekkan1: "images/gekkan-1.jpg", gekkan2: "images/gekkan-2.jpg"
+  gekkan1: "images/gekkan-1.jpg", gekkan2: "images/gekkan-2.jpg",
+  editUploading: "images/edit-uploading.jpg", editChatDone: "images/edit-chat-done.jpg", editSharePrep: "images/edit-share-prep.jpg", editShareSheet: "images/edit-share-sheet.jpg"
 };
 
 const CONTENT = {
@@ -343,15 +346,15 @@ const CONTENT = {
         {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
         {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
           {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
+          {type:"note", text:"【入門】は一覧の順番通りにしか受講できません。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"},
           {type:"carousel", items:[
             {img:IMG.currLevels, cap:"技術カリキュラム（レベル一覧）",
-              pins:[{n:1,x:30,y:40}],
-              legend:[{n:1,h:"レベルを選ぶ",p:"現在は【入門】のみ公開中。実施したいレベルをタップ。"}]},
+              pins:[{n:1,x:30,y:30}],
+              legend:[{n:1,h:"レベルを選ぶ",p:"実施したいレベルをタップ。"}]},
             {img:IMG.currList, cap:"進捗・次の受講案内・カリキュラム一覧",
               pins:[{n:1,x:50,y:37}],
               legend:[{n:1,h:"カリキュラムを受講",p:"「このカリキュラムを受講する」から開始します。"}]}
-          ]},
-          {type:"note", text:"【入門】は一覧の順番通りに受講。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"}
+          ]}
         ]},
         {type:"acc", group:"使い方", title:"② 動画を視聴する", blocks:[
           {type:"lead", text:"動画を最後まで視聴すると受講完了になります。手順はいつでも見返せます。"},
@@ -406,15 +409,14 @@ const CONTENT = {
           ]}
         ]},
         {type:"acc", group:"詳細", title:"カリキュラムの構成", blocks:[
-          {type:"lead", text:"入門・基礎・応用・エキスパートの4レベルで構成。現在は【入門】のみ公開中です。"},
-          {type:"html", html:`<div class="lv"><div class="lrow"><div class="lhh"><span class="ls" style="background:#E8F4EC;color:#1c6642">★</span><b>入門</b><span class="lb" style="background:#EDEFF3;color:#39404f">新人用</span></div><p>入客に必要最低限の知識と技術を学ぶ</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#EBEEFB;color:#293b8f">★</span><b>基礎</b><span class="lb" style="background:#EBEEFB;color:#293b8f">ベーシック検定</span></div><p>プレイヤーとして、知識・技術・カウンセリングの基礎を学ぶ</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#FaF1E2;color:#734711">★</span><b>応用</b><span class="lb" style="background:#FaF1E2;color:#734711">テクニック検定</span></div><p>デザイナーとして、馴染み・スピード・仕上げの力を伸ばす</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#F7E3EA;color:#a5285f">★</span><b>エキスパート</b><span class="lb" style="background:#F7E3EA;color:#a5285f">マスター試験</span></div><p>プルエクステ完全攻略のエキスパートを目指す</p></div></div>`},
-          {type:"note", text:"検定に受かるとポイントの獲得倍率が上がります。各レベルがその検定の対策になっています。"}
+          {type:"lead", text:"入門・基礎・応用・エキスパートの4レベルで構成。"},
+          {type:"html", html:`<div class="lv"><div class="lrow"><div class="lhh"><span class="ls" style="background:#E8F4EC;color:#1c6642">★</span><b>入門</b><span class="lb" style="background:#EDEFF3;color:#39404f">新人用</span></div><p>入客に必要最低限の知識と技術を学ぶ</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#EBEEFB;color:#293b8f">★</span><b>基礎</b><span class="lb" style="background:#EBEEFB;color:#293b8f">ベーシック検定</span></div><p>プレイヤーとして、知識・技術・カウンセリングの基礎を学ぶ</p></div><div class="lrow"><div class="lhh"><span class="ls" style="background:#FaF1E2;color:#734711">★</span><b>応用</b><span class="lb" style="background:#FaF1E2;color:#734711">テクニック検定</span></div><p>デザイナーとして、馴染み・スピード・仕上げの力を伸ばす</p></div><div class="lrow" style="opacity:.6"><div class="lhh"><span class="ls" style="background:#F7E3EA;color:#a5285f">★</span><b>エキスパート</b><span class="lb" style="background:#F7E3EA;color:#a5285f">マスター試験</span></div><p>プルエクステ完全攻略のエキスパートを目指す</p><div style="text-align:right;margin-top:7px"><span class="lsoon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>順次公開予定</span></div></div></div>`},
+          {type:"note", text:"各レベルがその検定の対策になっています。"}
         ]},
         {type:"acc", group:"詳細", title:"受講の完了条件", blocks:[
           {type:"rules", rows:[
             ["動画視聴","最後まで視聴で完了（「視聴済み」に）"],
-            ["クイズ","全問正解で完了"],
-            ["受講順","入門は順番通り／基礎・応用・エキスパートは選択可"]
+            ["クイズ","全問正解で完了"]
           ]}
         ]}
       ]},
@@ -443,7 +445,7 @@ const CONTENT = {
         {type:"acc", group:"詳細", nav:"投稿ルール", tid:"sns.rule.title", title:"投稿動画のルール", blocks:[
           {type:"subhead", text:"🎬 投稿前｜動画をつくるときのルール"},
           {type:"steps", check:true, steps:[
-            {h:"訴求動画であること", p:"プルエクステ／プルシールの魅力を伝える動画。"},
+            {h:"訴求動画であること", p:"プルエクステの魅力を伝える動画。"},
             {h:"15秒以上の動画", p:"15秒未満は対象外です。"},
             {h:"マイナスプロモはNG", p:"ブランドイメージを下げる内容は禁止。"}
           ]},
@@ -481,7 +483,7 @@ const CONTENT = {
           {type:"lead", text:"「依頼・相談」タブの新規タスクから「動画アップロード」を選びます。"},
           {type:"carousel", items:[
             {img:IMG.editDash, cap:"「依頼・相談」タブ →「＋ 新規タスク」",
-              pins:[{n:1,x:75,y:87}],
+              pins:[{n:1,x:78,y:88}],
               legend:[{n:1,h:"「＋ 新規タスク」をタップ",p:"画面右下のボタンから。"}]},
             {img:IMG.editRequest, cap:"新規リクエスト",
               pins:[{n:1,x:50,y:88}],
@@ -492,13 +494,18 @@ const CONTENT = {
           {type:"lead", text:"撮影した動画を選んでアップロードします。"},
           {type:"subhead", text:"⚠️ アップロード時の注意点"},
           {type:"note", tone:"warn", text:"同じお客様の一連の施術で撮影した素材は、必要なものを全て同時に選択してアップロードしてください。あとから追加で送ることはできません。"},
-          {type:"shot", img:IMG.editUpload, cap:"動画のアップロード",
-            pins:[{n:1,x:50,y:26},{n:2,x:50,y:48},{n:3,x:50,y:96}],
-            legend:[
-              {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ（複数可）。"},
-              {n:2,h:"タイトル・要望を入力（任意）",p:"必要なら「タイトル」や「編集のご要望」を入力します。"},
-              {n:3,h:"「処理を開始する」",p:"タップでアップロード開始。"}
-            ]},
+          {type:"carousel", items:[
+            {img:IMG.editUpload, cap:"動画のアップロード",
+              pins:[{n:1,x:50,y:26},{n:2,x:50,y:48},{n:3,x:50,y:96}],
+              legend:[
+                {n:1,h:"動画を選択",p:"「タップして動画を選択」から、必要な素材を選ぶ（複数可）。"},
+                {n:2,h:"タイトル・要望を入力（任意）",p:"必要なら「タイトル」や「編集のご要望」を入力します。"},
+                {n:3,h:"「処理を開始する」",p:"タップでアップロード開始。"}
+              ]},
+            {img:IMG.editUploading, cap:"アップロード中",
+              pins:[{n:1,x:50,y:83}],
+              legend:[{n:1,h:"バックグラウンドに回す（閉じる）",p:"画面を閉じた状態でもアップロード可能です。アップロード中はアプリを完全に閉じないように注意してください。"}]}
+          ]},
           {type:"subhead", text:"困った時は"},
           {type:"note", text:"素材を入れ忘れた、誤った素材を送ってしまったなど、お困りの際は担当営業までお問い合わせください。"}
         ]},
@@ -506,41 +513,64 @@ const CONTENT = {
           {type:"lead", text:"アップロード後は「制作中の動画」で状況を確認できます。"},
           {type:"carousel", items:[
             {img:IMG.editProgress, cap:"制作中は「進行中」",
-              pins:[{n:1,x:34,y:52}],
+              pins:[{n:1,x:30,y:33}],
               legend:[{n:1,h:"制作中は「進行中」",p:"制作が進むと「進行中」と表示されます。"}]},
             {img:IMG.editDone, cap:"完成すると「完了」",
-              pins:[{n:1,x:33,y:49}],
+              pins:[{n:1,x:30,y:33}],
               legend:[{n:1,h:"完成したら「完了」",p:"完成すると「完了」と表示されます。"}]}
           ]}
         ]},
+        {type:"acc", group:"使い方", title:"④ 動画を投稿", blocks:[
+          {type:"lead", text:"完成した動画を受け取って、TikTok・YouTubeに投稿します。"},
+          {type:"carousel", items:[
+            {img:IMG.editDone, cap:"完了した動画をタップ",
+              pins:[{n:1,x:80,y:33}],
+              legend:[{n:1,h:"タップして開く",p:"「完了」になった動画をタップします。"}]},
+            {img:IMG.editChatDone, cap:"編集完了・添付動画",
+              pins:[{n:2,x:66,y:66}],
+              legend:[{n:2,h:"添付動画の右上のマークをタップ",p:"共有メニューを開きます。"}]},
+            {img:IMG.editSharePrep, cap:"シェアの準備中",
+              pins:[{n:3,x:50,y:95}],
+              legend:[{n:3,h:"しばらく待機",p:"「シェアの準備中」と表示されるので、その状態で少し待ちます。"}]},
+            {img:IMG.editShareSheet, cap:"共有画面",
+              pins:[{n:4,x:82,y:76}],
+              legend:[{n:4,h:"アプリを選択して投稿",p:"共有画面からアプリ（TikTok等）を選ぶと、そのまま投稿できます。"}]}
+          ]},
+          {type:"subhead", text:"BGMについて"},
+          {type:"lead", text:"納品された動画にBGMは付いていません。必要な場合は自分で付けてください。"},
+          {type:"note", tone:"warn", text:"TikTokでプロモートをかける場合は、商用利用が可能な楽曲を選んでください。"},
+          {type:"note", text:"プロモートをかけない場合は、楽曲の種類は気にしなくてOKです。"}
+        ]},
         {type:"acc", group:"詳細", title:"サービス詳細", blocks:[
           {type:"rules", rows:[
-            ["利用費用","無料"],
-            ["納期","依頼から最大10営業日以内"]
+            ["編集動画","プルエクステのカウンセリング動画"]
           ]},
           {type:"subhead", text:"対象素材"},
           {type:"steps", check:true, steps:[
-            {h:"動画素材の合計時間が5分以上あること", p:""},
-            {h:"プルエクステ/プルシールの施術動画であること", p:""},
-            {h:"希望の色や本数のヒヤリングなど、カウンセリングのやり取りが合わせて1分以上あること", p:""},
-            {h:"ビフォーとアフター両方のシーンが含まれていること", p:""},
-            {h:"会話が聞き取れること", p:""}
+            {h:"プルエクステの施術をしている", p:""},
+            {h:"希望の色や本数のヒヤリングなど、カウンセリングのやり取りが合わせて1分以上", p:""},
+            {h:"会話が聞き取れる", p:""},
+            {h:"ビフォー・アフター両方のシーンが含まれている", p:""}
           ]},
           {type:"rules", rows:[
+            ["顔・体型加工","対応不可"],
+            ["修正","原則対応不可"],
             ["月ノルマ","あり（詳細は別途）"],
             ["投稿義務","完成後は必ずTikTokとYouTubeに投稿（Instagramは任意）"],
-            ["プロモート","TikTok投稿にC1側でプロモートを実施"],
-            ["顔・体型加工","対応不可"],
-            ["修正","原則対応不可"]
+            ["プロモート","TikTok投稿にC1側でプロモートを実施"]
           ]}
         ]},
-        {type:"acc", group:"使い方", title:"BGMについて", blocks:[
-          {type:"lead", text:"納品された動画にBGMは付いていません。必要な場合は自分で付けてください。"},
-          {type:"note", tone:"warn", text:"TikTokでプロモートをかける場合は、商用利用が可能な楽曲を選んでください。"},
-          {type:"note", text:"プロモートをかけない（かからなくても問題ない）場合は、楽曲の種類は気にしなくてOKです。"}
+        {type:"acc", group:"詳細", title:"推奨事項", blocks:[
+          {type:"subhead", text:"カウンセリング内容"},
+          {type:"lead", text:"色・本数・色味・金額に加え、「プルエクステを選んだ理由」「良いところ」「お手入れ方法」「相性の良い商品」なども話していただけると、より良い動画に仕上がります。"},
+          {type:"subhead", text:"画角"},
+          {type:"lead", text:"広角・引きめの画角で撮影してください。編集・調整がしやすくなります。"},
+          {type:"subhead", text:"音声"},
+          {type:"lead", text:"可能であれば、ノイズキャンセリング機能付きマイクの使用などで、サロンのBGMや周囲の雑音をできるだけ抑えていただけると助かります。"},
+          {type:"note", tone:"warn", text:"あまりに音声が聞き取れない場合は、編集できないことがあります。"}
         ]},
         {type:"acc", group:"使い方", title:"投稿の報告について", blocks:[
-          {type:"lead", text:"投稿が完了したら、SNS動画投稿の「使い方：投稿URLの報告」と同じ手順で報告します。"}
+          {type:"lead", text:"投稿が完了したら、SNS投稿促進サポートの「使い方：投稿URLの報告」と同じ手順で報告します。"}
         ]},
         {type:"acc", group:"詳細", title:"ポイント対象の動画", blocks:[
           {type:"rules", rows:[
@@ -580,41 +610,42 @@ const CONTENT = {
       blocks:[
         {type:"lead", text:"ポイントの確認・履歴・交換はすべて「ポイント」画面から。毎月の交換可能額は¥50,000まで（Amazon・プロモート共通）。"},
         {type:"acc", group:"ページ", nav:"開き方", title:"ポイント画面の開き方", blocks:[
-          {type:"carousel", items:[
-            {img:IMG.myPage, cap:"マイページ →「ポイント」",
-              pins:[{n:1,x:88,y:96},{n:2,x:50,y:31}],
-              legend:[
-                {n:1,h:"「マイページ」を開く",p:"画面下部・右の「マイページ」をタップ。"},
-                {n:2,h:"「ポイント」をタップ",p:"上部の「ポイント（残高・履歴・交換申請）」を開きます。"}
-              ]},
-            {img:IMG.ptScreen, cap:"ポイント画面。ここから各操作へ",
-              pins:[{n:1,x:50,y:57.7},{n:2,x:50,y:64.8},{n:3,x:50,y:79}],
-              legend:[
-                {n:1,h:"Amazonギフト券に交換",p:"ギフト券と交換する。"},
-                {n:2,h:"TikTokプロモート代行",p:"自分の投稿をプロモートする。"},
-                {n:3,h:"履歴確認",p:"残高・獲得／使用の履歴を見る。"}
-              ]}
-          ]}
+          {type:"shot", img:IMG.myPage, cap:"マイページ →「ポイント」",
+            pins:[{n:1,x:88,y:96},{n:2,x:50,y:31}],
+            legend:[
+              {n:1,h:"「マイページ」を開く",p:"画面下部・右の「マイページ」をタップ。"},
+              {n:2,h:"「ポイント」をタップ",p:"上部の「ポイント（残高・履歴・交換申請）」を開きます。"}
+            ]}
         ]},
         {type:"acc", group:"交換", nav:"Amazon交換", title:"Amazonギフト券に交換", blocks:[
           {type:"lead", text:"1pt = 0.5円で交換（¥1,000＝2,000pt〜）。"},
-          {type:"shot", img:IMG.ptExchangeAmazon, cap:"ポイント → Amazonギフト券に交換",
-            pins:[{n:1,x:50,y:62},{n:2,x:50,y:94}],
-            legend:[
-              {n:1,h:"ギフト額を選択",p:"もらえるギフト額を選ぶ（その他の金額も入力可）。"},
-              {n:2,h:"「交換を申請する」",p:"タップで申請完了。"}
-            ]}
+          {type:"carousel", items:[
+            {img:IMG.ptScreen, cap:"ポイント画面",
+              pins:[{n:1,x:50,y:60}],
+              legend:[{n:1,h:"「Amazonギフト券に交換」をタップ",p:"ポイント画面から選びます。"}]},
+            {img:IMG.ptExchangeAmazon, cap:"ポイント → Amazonギフト券に交換",
+              pins:[{n:1,x:50,y:62},{n:2,x:50,y:94}],
+              legend:[
+                {n:1,h:"ギフト額を選択",p:"もらえるギフト額を選ぶ（その他の金額も入力可）。"},
+                {n:2,h:"「交換を申請する」",p:"タップで申請完了。"}
+              ]}
+          ]}
         ]},
         {type:"acc", group:"交換", nav:"プロモート", title:"TikTokプロモート代行", blocks:[
           {type:"note", tone:"warn", text:"依頼の前に、下の「TikTokプロモートの事前設定」を済ませておいてください。"},
           {type:"lead", text:"1pt = 1円で消費（¥1,000〜）。"},
-          {type:"shot", img:IMG.ptPromote, cap:"ポイント → TikTokプロモート代行",
-            pins:[{n:1,x:50,y:51},{n:2,x:50,y:61},{n:3,x:50,y:79}],
-            legend:[
-              {n:1,h:"投稿URLを入力",p:"プロモートしたい投稿のURLを貼り付け。"},
-              {n:2,h:"依頼額を選択",p:"金額を選ぶ（¥1,000〜）。消費ポイントが表示されます。"},
-              {n:3,h:"「この内容で依頼する」",p:"タップで依頼完了。"}
-            ]}
+          {type:"carousel", items:[
+            {img:IMG.ptScreen, cap:"ポイント画面",
+              pins:[{n:1,x:50,y:70}],
+              legend:[{n:1,h:"「TikTokプロモート代行」をタップ",p:"ポイント画面から選びます。"}]},
+            {img:IMG.ptPromote, cap:"ポイント → TikTokプロモート代行",
+              pins:[{n:1,x:50,y:51},{n:2,x:50,y:61},{n:3,x:50,y:79}],
+              legend:[
+                {n:1,h:"投稿URLを入力",p:"プロモートしたい投稿のURLを貼り付け。"},
+                {n:2,h:"依頼額を選択",p:"金額を選ぶ（¥1,000〜）。消費ポイントが表示されます。"},
+                {n:3,h:"「この内容で依頼する」",p:"タップで依頼完了。"}
+              ]}
+          ]}
         ]},
         {type:"acc", group:"交換", title:"TikTokプロモートの事前設定", blocks:[
           {type:"lead", text:"プロモートを使う前に、TikTok側で「すべてのユーザーにプロモーションを許可」する設定が必要です。"},
@@ -638,13 +669,24 @@ const CONTENT = {
         ]},
         {type:"acc", group:"履歴", nav:"履歴確認", title:"残高・履歴の確認", blocks:[
           {type:"lead", text:"利用可能ポイント、今月の獲得／使用、月ごとの推移を確認できます。"},
-          {type:"shot", img:IMG.ptHistory, cap:"ポイント → 履歴確認"}
+          {type:"carousel", items:[
+            {img:IMG.ptScreen, cap:"ポイント画面",
+              pins:[{n:1,x:50,y:85}],
+              legend:[{n:1,h:"「履歴確認」をタップ",p:"ポイント画面から選びます。"}]},
+            {img:IMG.ptHistory, cap:"ポイント → 履歴確認"}
+          ]}
         ]},
         {type:"acc", group:"履歴", nav:"ランキング", title:"ランキング", blocks:[
           {type:"lead", text:"特定の期間のポイント獲得数が、ランキングで表示されます。"},
-          {type:"shot", img:IMG.ptRanking, cap:"ポイント → ランキング",
-            pins:[{n:1,x:30,y:16}],
-            legend:[{n:1,h:"期間を選ぶ",p:"今月／上半期／下半期／年間で切り替えられます。"}]}
+          {type:"carousel", items:[
+            {img:IMG.ptScreen, cap:"ポイント画面",
+              pins:[{n:1,x:50,y:78}],
+              legend:[{n:1,h:"「ランキング」をタップ",p:"ポイント画面から選びます。"}]},
+            {img:IMG.ptRanking, cap:"ポイント → ランキング",
+              pins:[{n:1,x:25,y:26}],
+              legend:[{n:1,h:"期間を選ぶ",p:"今月／上半期／下半期／年間で切り替えられます。"}]}
+          ]},
+          {type:"note", text:"ポイントの獲得があればランキングに表示されます。獲得がない場合は、順位は表示されません。"}
         ]}
       ]},
     { id:"register", icon:"🚀", accent:"slate", label:"アプリの登録方法", sub:"インストール・ログイン",
@@ -701,8 +743,7 @@ function block(b){
     return `<div class="carousel-wrap"><div class="carousel">${slides}</div><div class="cdots">${dots}</div><div class="cswipe">← スワイプで切り替え →</div></div>`;
   }
   if(b.type==="acc"){
-    const openAttr = b.open===false ? '' : 'open';
-    return `<details class="acc" ${b.nav?`data-nav="${esc(b.nav)}"`:''} ${openAttr}><summary><span class="dot"></span>${esc(T(b.tid,b.title))}${CV}</summary><div class="inner">${b.blocks.map(block).join('')}</div></details>`;
+    return `<details class="acc locked" ${b.nav?`data-nav="${esc(b.nav)}"`:''} open><summary><span class="dot"></span>${esc(T(b.tid,b.title))}</summary><div class="inner">${b.blocks.map(block).join('')}</div></details>`;
   }
   return '';
 }
@@ -746,7 +787,7 @@ function renderHome(){
   </div>`;
 }
 
-function tabOrder(accs){ const seen=[]; accs.forEach(a=>{ if(a.group && !seen.includes(a.group)) seen.push(a.group); }); return seen; }
+function tabOrder(accs){ const seen=[]; accs.forEach(a=>{ if(a.group && !seen.includes(a.group)) seen.push(a.group); }); const pri=["詳細","使い方"]; seen.sort((a,b)=>{ const ia=pri.indexOf(a), ib=pri.indexOf(b); if(ia<0&&ib<0) return 0; if(ia<0) return 1; if(ib<0) return -1; return ia-ib; }); return seen; }
 function orderedAccs(s){
   const accs=s.blocks.filter(b=>b.type==='acc');
   const tabs=tabOrder(accs);
