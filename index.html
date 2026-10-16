@@ -238,6 +238,9 @@ body{font-family:var(--body);color:var(--ink);line-height:1.7;
 .note p{font-size:12.5px;color:var(--ac-ink);line-height:1.65}
 .note .nb{flex:1;min-width:0}
 .jumpbtn{display:inline-flex;align-items:center;gap:6px;margin-top:9px;padding:7px 13px;border-radius:999px;border:1px solid var(--ac);background:var(--surface,#fff);color:var(--ac-ink);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;line-height:1.3}
+a.jumpbtn{text-decoration:none}
+.jumpbtn.big{display:flex;width:100%;justify-content:center;gap:8px;margin-top:12px;padding:14px 16px;border-radius:14px;border:none;background:var(--ac);color:#fff;font-size:14.5px;box-shadow:0 4px 14px rgba(20,22,31,.12)}
+.jumpbtn.big .jb-go{font-size:18px}
 .jumpbtn .jb-go{font-size:14px;line-height:1}
 .jumpwrap{margin-top:4px}
 .note.warn{--ac:#C7502F;--ac-soft:#FBEDE8;--ac-ink:#8a3016}
@@ -302,6 +305,110 @@ mark{background:#FCE39C;color:inherit;border-radius:3px;padding:0 1px;font-weigh
   *{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+.sg{--ok:#2C9E68;--ok-soft:#E8F4EC;--ok-ink:#1c6642;--ng:#C7502F;--ng-soft:#FBEDE8;--ng-ink:#8a3016}
+.sg .sg-subhead{font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink);margin:16px 2px 6px;display:flex;align-items:center;gap:6px}
+.sg .sg-subhead:first-child{margin-top:6px}
+.sg .sg-subhead.sg-sep{margin:18px -16px 6px;padding:16px 18px 0;border-top:6px solid var(--bg)}
+.sg .sg-txt{font-size:13px;color:var(--ink2);line-height:1.7}
+.sg /* rules rows */
+.sg-rules{display:flex;flex-direction:column}
+.sg .sg-rules .sg-row{padding:11px 2px;border-bottom:1px dashed var(--line)}
+.sg .sg-rules .sg-row:last-child{border-bottom:none}
+.sg .sg-rules .sg-row .sg-h{display:flex;align-items:center;gap:8px}
+.sg .sg-rules .sg-row .sg-h b{font-family:var(--disp);font-size:14px}
+.sg .sg-rules .sg-row .sg-h .sg-tag{font-size:10.5px;font-weight:700;color:var(--ac-ink);background:var(--ac-soft);padding:2px 8px;border-radius:999px;margin-left:auto;white-space:nowrap}
+.sg .sg-rules .sg-row p{font-size:12.5px;color:var(--ink2);margin-top:3px;line-height:1.6}
+.sg .sg-pill{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+.sg .sg-pill.sg-must{background:#171A26;color:#fff}
+.sg .sg-pill.sg-want{background:var(--ac-soft);color:var(--ac-ink)}
+.sg /* OK / NG */
+.sg-two{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.sg .sg-two.sg-stack{grid-template-columns:1fr}
+@media(max-width:374px){.sg .sg-two{grid-template-columns:1fr}}
+.sg .sg-col{border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 11px}
+.sg .sg-col .sg-hh{display:flex;align-items:center;gap:7px;margin-bottom:6px;font-size:12.5px;font-weight:800;font-family:var(--disp)}
+.sg .sg-col p,.sg .sg-col li{font-size:11.8px;color:var(--ink2);line-height:1.55}
+.sg .sg-col ul{padding-left:1.1em;margin-top:4px}
+.sg .sg-col.sg-ng{border-color:#f0c9bd;background:var(--ng-soft)}
+.sg .sg-col.sg-ng .sg-hh{color:var(--ng-ink)}
+.sg .sg-col.sg-ok{border-color:#bfe0cd;background:var(--ok-soft)}
+.sg .sg-col.sg-ok .sg-hh{color:var(--ok-ink)}
+.sg .sg-badge-ng,.sg .sg-badge-ok{font-size:10px;font-weight:800;padding:2px 8px;border-radius:999px;color:#fff}
+.sg .sg-badge-ng{background:var(--ng)}
+.sg .sg-badge-ok{background:var(--ok)}
+.sg /* talk bubbles */
+.sg-scene{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-top:12px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.sg .sg-scene .sg-sh{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#171A26;color:#fff}
+.sg .sg-scene .sg-sh .sg-sn{font:800 11px/1 var(--disp);letter-spacing:.08em;background:var(--ac);padding:5px 8px;border-radius:7px}
+.sg .sg-scene .sg-sh b{font-family:var(--disp);font-size:14.5px}
+.sg .sg-scene .sg-sh small{display:block;font-size:11px;color:#AEB6D0;font-weight:500}
+.sg .sg-scene .sg-sb{padding:12px 14px 14px}
+.sg .sg-say{position:relative;background:var(--bg);border-radius:12px;padding:10px 12px 10px 34px;font-size:13px;color:var(--ink);margin-top:6px}
+.sg .sg-say::before{content:"💬";position:absolute;left:10px;top:9px;font-size:14px}
+.sg .sg-pt{font-size:12.5px;color:var(--ac-ink);background:var(--ac-soft);border-radius:10px;padding:8px 11px;margin-top:8px}
+.sg .sg-pt b{font-weight:800}
+.sg .sg-ngline{font-size:12.5px;color:var(--ng-ink);background:var(--ng-soft);border-radius:10px;padding:8px 11px;margin-top:8px}
+.sg .sg-ngline b{font-weight:800}
+.sg /* scene flow */
+.sg-sflow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.sg .sg-sflow .sg-c{position:relative;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 10px;text-align:center}
+.sg .sg-sflow .sg-c i{font-style:normal;display:block;font-size:20px}
+.sg .sg-sflow .sg-c b{display:block;font-family:var(--disp);font-size:13px;margin-top:4px}
+.sg .sg-sflow .sg-c small{font-size:10.5px;color:var(--muted);font-weight:700}
+.sg /* pitch */
+.sg-pitch{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.sg .sg-pitch .sg-q{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:13px}
+.sg .sg-pitch .sg-q.sg-b{background:var(--ac-soft);color:var(--ac-ink);font-weight:700}
+.sg .sg-pitch .sg-ar{text-align:center;color:var(--muted);font-size:12px;line-height:1}
+.sg /* diagram */
+.sg-fig{margin:10px 0 2px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 10px 10px}
+.sg .sg-fig svg{display:block;width:100%;height:auto;max-width:300px;margin:0 auto}
+.sg .sg-phone{position:relative;width:62%;max-width:230px;margin:0 auto;aspect-ratio:9/16;border-radius:20px;overflow:hidden;border:3px solid #14161F;box-shadow:var(--shadow);background:#000}
+.sg .sg-phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sg .sg-phone .sg-zone{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:9.5px;line-height:1.35;color:#fff;font-weight:700}
+.sg .sg-phone .sg-zone b{font-size:12px;font-family:var(--disp)}
+.sg .sg-phone .sg-top{top:0;height:15%;background:rgba(199,80,47,.55)}
+.sg .sg-phone .sg-bot{bottom:0;height:20%;background:rgba(199,80,47,.55)}
+.sg .sg-phone .sg-safe{top:15%;height:65%;border:2px dashed #fff;outline:2px dashed #3A56C8;outline-offset:-4px;justify-content:flex-end;padding-bottom:6px}
+.sg .sg-phone .sg-safe span{background:#3A56C8;color:#fff;font-size:10px;padding:2px 8px;border-radius:999px}
+.sg .sg-fig .sg-cap b{color:var(--ink);font-size:12.5px}
+.sg .sg-col img.sg-shot{display:block;width:100%;aspect-ratio:2286/3383;object-fit:cover;border-radius:9px;margin-bottom:9px;border:1px solid var(--line)}
+.sg .sg-fig img.sg-ref{display:block;width:100%;height:auto;border-radius:10px}
+.sg .sg-col img.sg-shot9{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:9px;margin:2px 0 8px;border:1px solid var(--line)}
+.sg .sg-badge-raw,.sg .sg-badge-edit{font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:999px;color:#fff}
+.sg .sg-badge-raw{background:#171A26}
+.sg .sg-badge-edit{background:var(--ac)}
+.sg .sg-two.sg-cmp{grid-template-columns:1fr 1fr!important}
+.sg .sg-why{margin:4px 0 6px}
+.sg .sg-why-h{font-family:var(--disp);font-weight:800;font-size:14px;color:var(--ink);margin:6px 2px 8px}
+.sg .sg-why-card{background:linear-gradient(160deg,#E4572E 0%,#C7302A 100%);border-radius:16px;padding:22px 16px 18px;text-align:center;box-shadow:0 8px 22px rgba(199,48,42,.28)}
+.sg .sg-why-card .sg-why-ic{display:grid;place-items:center;width:56px;height:56px;margin:0 auto 10px;border-radius:16px;background:#fff;font-size:28px}
+.sg .sg-why-card b{display:block;font-family:var(--disp);font-weight:900;font-size:22px;color:#fff}
+.sg .sg-why-card p{font-size:13.5px;font-weight:700;color:#fff;line-height:1.7;margin-top:8px}
+.sg .sg-why-key{margin-top:14px;background:#fff;color:#A82520;border-radius:12px;padding:12px 10px;font-family:var(--disp);font-weight:800;font-size:13.5px;line-height:1.55}
+.sg .sg-fig .sg-cap{text-align:center;color:var(--muted);font-size:11.5px;margin-top:6px}
+.sg /* table */
+.sg-ngtbl{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.sg .sg-ngtbl .sg-it{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.sg .sg-ngtbl .sg-it .sg-t{font-family:var(--disp);font-weight:700;font-size:13.5px;padding:9px 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+.sg .sg-ngtbl .sg-it .sg-r{display:flex;gap:8px;padding:9px 12px;font-size:12.3px;line-height:1.55;color:var(--ink2)}
+.sg .sg-ngtbl .sg-it .sg-r+.sg-r{border-top:1px dashed var(--line)}
+.sg .sg-ngtbl .sg-it .sg-r span{flex:0 0 auto;align-self:flex-start;margin-top:1px}
+.sg /* checklist */
+.sg-cl{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.sg .sg-cl label{display:flex;gap:11px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:11px 12px;cursor:pointer;font-size:13px;line-height:1.55}
+.sg .sg-cl input{appearance:none;-webkit-appearance:none;flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:2px solid #c7cbd5;background:#fff;margin-top:1px;display:grid;place-items:center;cursor:pointer}
+.sg .sg-cl input:checked{background:var(--ac);border-color:var(--ac)}
+.sg .sg-cl input:checked::after{content:"";width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
+.sg .sg-cl label:has(input:checked){background:var(--ac-soft);border-color:transparent;color:var(--ac-ink)}
+.sg .sg-bullets{list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:6px}
+.sg .sg-bullets li{display:flex;gap:10px;background:var(--bg);border-radius:11px;padding:10px 12px;font-size:13px;color:var(--ink);line-height:1.55}
+.sg .sg-bullets li i{font-style:normal;flex:0 0 auto}
+.sg .sg-rec{display:inline-block;vertical-align:2px;margin-left:6px;font-size:10.5px;font-weight:700;color:var(--ac-ink);background:var(--ac-soft);padding:2px 8px;border-radius:999px;font-family:var(--body);white-space:nowrap}
+.d-head h2{word-break:keep-all;overflow-wrap:anywhere}
+.chap{font:700 11.5px/1 var(--body);letter-spacing:.12em;color:var(--muted);margin:22px 4px 10px}
+.tabpanel>.chap:first-child{margin-top:6px}
+.ilink{color:inherit;font-weight:800;text-decoration:underline;cursor:pointer}
 </style>
 </head>
 <body>
@@ -467,7 +574,8 @@ const CONTENT = {
           {type:"steps", check:true, steps:[
             {h:"投稿から1週間以内に申請", p:"期限を過ぎると対象外です。"}
           ]},
-          {type:"note", text:"同じ動画を複数媒体に投稿した場合は、それぞれのURLを個別に申請してください。"}
+          {type:"note", text:"同じ動画を複数媒体に投稿した場合は、それぞれのURLを個別に申請してください。"},
+          {type:"jump", sid:"shoot", title:"① 投稿の前に：プロフィールを整える", label:"撮り方・投稿のコツを見る"}
         ]},
         {type:"acc", group:"詳細", nav:"ポイント", tid:"sns.point.title", title:"ポイント付与について", blocks:[
           {type:"rules", rows:[
@@ -487,6 +595,7 @@ const CONTENT = {
       blocks:[
         {type:"html", html:`<details class="cue" open><summary>撮影・投稿だけでOK<span class="cv">▼</span></summary><div class="cue3"><div class="cell"><span class="ci">✂️</span><b>編集は<br>おまかせ</b><span>面倒な編集はプロが担当</span></div><div class="cell"><span class="ci">🎬</span><b>撮影と<br>投稿だけ</b><span>続かない原因の編集負担をゼロに</span></div><div class="cell"><span class="ci">💰</span><b>費用は<br>無料</b><span>外注なら1本3〜5千円が0円</span></div></div><div class="cue-foot">「作る負担」ごと、C1が引き受けます</div></details>`},
         {type:"lead", text:"撮影・投稿だけでOK。面倒な編集はプロにおまかせします。"},
+        {type:"jump", big:true, sid:"shoot", title:"機材リスト", label:"🎥 撮影前に撮り方ガイドをチェック"},
         {type:"acc", group:"使い方", title:"① 依頼する（動画アップロード）", blocks:[
           {type:"note", text:"先に『詳細』タブのサービス詳細を確認してください。"},
           {type:"lead", text:"「依頼・相談」タブの新規タスクから「動画アップロード」を選びます。"},
@@ -563,7 +672,7 @@ const CONTENT = {
             {h:"ビフォー・アフター両方のシーンが含まれている", p:""}
           ]},
           {type:"rules", rows:[
-            ["顔・体型加工","対応不可"],
+            ["顔・体型加工","対応不可（顔のモザイクは対応可）"],
             ["修正","原則対応不可"],
             ["月ノルマ","あり（詳細は別途）"],
             ["投稿義務","完成後は必ずTikTokとYouTubeに投稿（Instagramは任意）"],
@@ -571,16 +680,18 @@ const CONTENT = {
             ["完成動画の期限","完成日から90日で削除"]
           ]},
           {type:"note", tone:"warn", text:"TikTokのプロモート設定を済ませておいてください（C1側でプロモートを実施するために必要です）。やり方は「ポイント（確認・交換）」ページの「TikTokプロモートの事前設定」をご確認ください。",
-            jump:{sid:"exchange", title:"TikTokプロモートの事前設定", label:"事前設定のやり方を見る"}}
+            jump:{sid:"exchange", title:"TikTokプロモートの事前設定", label:"事前設定のやり方を見る"}},
+          {type:"note", tone:"warn", text:"あまりに音声が聞き取れない場合は、編集できないことがあります。"}
         ]},
         {type:"acc", group:"詳細", title:"推奨事項", blocks:[
+          {type:"lead", text:"撮影のコツは「カウンセリング動画の撮り方ガイド」にまとめています。"},
+          {type:"jump", sid:"shoot", title:"美容師が動画に映るべき理由", label:"撮り方ガイドを見る"},
           {type:"subhead", text:"カウンセリング内容"},
           {type:"lead", text:"色・本数・色味・金額に加え、「プルエクステを選んだ理由」「良いところ」「お手入れ方法」「相性の良い商品」なども話していただけると、より良い動画に仕上がります。"},
           {type:"subhead", text:"画角"},
           {type:"lead", text:"広角・引きめの画角で撮影してください。編集・調整がしやすくなります。"},
           {type:"subhead", text:"音声"},
-          {type:"lead", text:"可能であれば、ノイズキャンセリング機能付きマイクの使用などで、サロンのBGMや周囲の雑音をできるだけ抑えていただけると助かります。"},
-          {type:"note", tone:"warn", text:"あまりに音声が聞き取れない場合は、編集できないことがあります。"}
+          {type:"lead", text:"可能であれば、ノイズキャンセリング機能付きマイクの使用などで、サロンのBGMや周囲の雑音をできるだけ抑えていただけると助かります。"}
         ]},
         {type:"acc", group:"使い方", title:"投稿の報告について", blocks:[
           {type:"lead", text:"投稿が完了したら、SNS投稿促進サポートの「使い方：投稿URLの報告」と同じ手順で報告します。"},
@@ -702,6 +813,262 @@ const CONTENT = {
           {type:"note", text:"ポイントの獲得があればランキングに表示されます。獲得がない場合は、順位は表示されません。"}
         ]}
       ]},
+    { id:"shoot", icon:"🎥", accent:"teal", hidden:true, label:"カウンセリング動画の\u200b撮り方ガイド", sub:"撮影前の準備から投稿まで",
+      blocks:[
+        {type:"acc", group:"撮る前に", chapter:"✅ チェックリスト", title:"撮影前のチェック", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-cl">
+<label><input type="checkbox">機材（端末・三脚・照明・マイク）の充電とストレージを確認した</label>
+<label><input type="checkbox">背景・映り込み（私物・他のお客様）を確認した</label>
+<label><input type="checkbox">顔出しOK／NG＝モザイク希望のどちらかを確認した</label>
+<label><input type="checkbox">明るさを顔と手元の両方でチェックした</label>
+</div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"01 撮影前の準備", title:"機材リスト", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-subhead"><span class="sg-pill sg-must">MUST</span>必ず用意したいもの</div>
+<div class="sg-rules">
+<div class="sg-row"><div class="sg-h"><b>📱 撮影端末</b><span class="sg-tag">スマホ（縦持ち固定）</span></div><p>基本は標準の1倍で撮る。引きで撮るのが難しい場合は広角でもOK</p><div class="sg-pt"><b>POINT</b>　画面の端ほど歪むので2人とも中央寄りに収める。</div></div>
+<div class="sg-row"><div class="sg-h"><b>📷 撮影アプリ</b><span class="sg-tag">標準のカメラアプリ</span></div><p>画質を保つため、標準のカメラアプリ（ノーマルカメラ）で撮る。</p><div class="sg-pt"><b>POINT</b>　加工が必要な場合は、撮影後または編集後に行う。</div></div>
+<div class="sg-row"><div class="sg-h"><b>🦯 固定器具</b><span class="sg-tag">三脚 or スマホホルダー</span></div><p>手ぶれ防止、画角固定のため、三脚やホルダーで固定して撮る。</p></div>
+<div class="sg-row"><div class="sg-h"><b>💾 ストレージ</b><span class="sg-tag">空き1GB以上</span></div><p>施術中の撮影は長回しになりがちなため、事前に確認。</p></div>
+</div>
+<div class="sg-subhead sg-sep"><span class="sg-pill sg-want">WANT</span>できたら用意したいもの</div>
+<div class="sg-rules">
+<div class="sg-row"><div class="sg-h"><b>💡 照明</b><span class="sg-tag">リングライト / LEDライト</span></div><p>表情が暗く映らないように使用する。</p></div>
+<div class="sg-row"><div class="sg-h"><b>🎙️ 音声</b><span class="sg-tag">ピンマイク（2人分）</span></div><p>内蔵マイクは環境音や周りの話し声を拾いやすい。会話シーンは特にピンマイクを使う。</p></div>
+</div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"01 撮影前の準備", title:"撮影場所のセッティング", blocks:[
+          {type:"html", html:`<div class="sg"><ol class="steps">
+<li><h4>背景を整える</h4><p>私物やタオル・道具など生活感のあるものを片付け、画面に映る情報量を減らす。</p></li>
+<li><h4>スマホ・三脚を置くスペースを確保</h4><p>撮影中にぐらつかないよう、安定して固定できる場所を事前に決めておく。</p></li>
+<li><h4>明るさを確認</h4><p>自然光＋人工照明を組み合わせる。顔も手元も暗すぎ・白飛びしていないか、逆光になっていないかを確認。</p></li>
+<li><h4>鏡の映り込みに注意</h4><p>スタッフや他のお客様が意図せず映らないよう角度を調整。</p></li>
+</ol></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"01 撮影前の準備", title:"当日、撮影前に確認すること", blocks:[
+          {type:"html", html:`<div class="sg"><div class="note warn"><span class="i">!</span><p><b>「顔出し可否」は毎回・撮影の直前に確認する。</b>前回OKでも当日変わることがある。</p></div>
+<div class="note"><span class="i">i</span><p>美容師自身の服装・髪型・爪などの身だしなみも、撮影前に整えておく。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"02 画角・構図の基本ルール", title:"美容師が動画に映るべき理由", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-why">
+<div class="sg-why-card"><span class="sg-why-ic">🙋</span><b>指名は「人」で決まる</b><p>見た人は技術だけでなく「この人にお願いしたい」で選ぶ。<br>顔や話し方が伝わって、はじめて指名につながる。</p><div class="sg-why-key">「お客様が映っていれば大丈夫」ではなく、<br>美容師が映ってこそのカウンセリング動画。</div></div>
+</div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"02 画角・構図の基本ルール", title:"縦型9:16とセーフゾーン", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-fig">
+<div class="sg-phone">
+<img src="images/shoot-1.jpg" alt="9:16の縦型で撮影したカウンセリング動画の撮影例。美容師とお客様が画面中央に収まっている">
+<div class="sg-zone sg-top"><b>上15%</b>テロップ・UIで隠れやすい</div>
+<div class="sg-zone sg-safe"><span>セーフゾーン</span></div>
+<div class="sg-zone sg-bot"><b>下20%</b>テロップ・UIで隠れやすい</div>
+</div>
+<div class="sg-cap"><b>比率 9:16（縦持ち固定）</b><br>美容師とお客様を中央のセーフゾーンに収める。<br>引き気味に余白を取れば、編集で「引き」と「アップ」の両方が作れる</div>
+</div>
+<div class="sg-subhead">撮影素材と完成動画を比べると</div>
+<div class="sg-two sg-cmp">
+<div class="sg-col"><div class="sg-hh"><span class="sg-badge-raw">撮影素材</span></div><img class="sg-shot9" src="images/shoot-2.jpg" alt="撮影素材：引きで撮影した元の映像"><p>美容師とお客様の全体が入る引きで撮り、上下左右に余白を残す。</p></div>
+<div class="sg-col"><div class="sg-hh"><span class="sg-badge-edit">完成動画</span></div><img class="sg-shot9" src="images/shoot-3.jpg" alt="完成動画：アップに切り出してテロップを入れた編集後の映像"><p>編集で顔まわりにアップして切り出し、下にテロップが入る。</p></div>
+</div>
+<div class="note"><span class="i">i</span><p><b>最初からアップで撮ると、編集で切り出す余地がなくなる。</b>引きで撮っておけば、アップにもテロップ入れにも対応できる。</p></div>
+<ol class="steps">
+<li><h4>比率は9:16</h4><p>スマホは必ず縦持ちで固定する。</p></li>
+<li><h4>被写体を画面中央に置く</h4><p>上15%・下20%は隠れやすいので、枠外にならないように確認する。</p></li>
+<li><h4>引き気味に余白を多めに撮る</h4><p>編集で「引きの画」と「アップの画」の両方が作れる。距離が取れないときは広角にしてもOK。</p></li>
+</ol>
+<div class="note"><span class="i">i</span><p><b>迷ったら中央＆引き気味でOK。</b>余白があれば編集で引きとアップ両方の絵を作れて、クオリティが上がる。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"02 画角・構図の基本ルール", title:"お客様と美容師の立ち位置", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">施術中は美容師も体の向きや高さを変えながら動き続けるので、意識していないと少しずつフレームから外れていく。</p>
+<div class="sg-two">
+<div class="sg-col sg-ng"><img class="sg-shot" src="images/shoot-4.jpg" alt="NG例：美容師の顔が画面の上に見切れている"><div class="sg-hh"><span class="sg-badge-ng">NG</span>いつのまにか画角の外</div><ul><li>最初の画角調整でお客様しか確認していない</li><li>施術中に動いて、位置が少しずつズレる</li></ul></div>
+<div class="sg-col sg-ok"><img class="sg-shot" src="images/shoot-5.jpg" alt="OK例：美容師とお客様の2人が画面に収まっている"><div class="sg-hh"><span class="sg-badge-ok">OK</span>目印に立ち位置を戻す</div><ul><li>鏡の枠や床のタイルなど、動かない目印を1つ決める</li><li>動いても、その目印を基準に戻す</li></ul></div>
+</div>
+<div class="note warn"><span class="i">!</span><p><b>「お客様が映っていれば大丈夫」が一番危ない。</b>画角チェックはお客様だけでなく自分も。</p></div>
+<div class="note"><span class="i">i</span><p>画角はやや広め（引き気味）にしておくと、多少動いても見切れにくい。時々「まだ目印の範囲にいるか」をセルフチェックする習慣を。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"02 画角・構図の基本ルール", title:"基本のカメラ位置（全シーン共通・固定）", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">カメラは基本、鏡の前か横にセット。装着編・取り外し編とも、シーンが変わってもカメラの位置は基本的に動かさない。三脚を立てたら、その位置のまま最初から最後まで撮り切る。</p>
+<ol class="steps">
+<li><h4>カメラ位置</h4><p>カメラは基本、<b>鏡の前か鏡の横</b>にセットする。正面〜斜め45度の角度から、お客様と美容師の顔が見えるように撮る。</p></li>
+<li><h4>距離感：約1m</h4><p>美容師とお客様の2人が画面に入るくらい。距離が取れず入りきらないときは広角にしてもOK（端は歪むので人は中央寄りに）。撮影を始める前に、美容師がお客様の横に回っても見切れないか一度確認する。</p></li>
+<li><h4>動かさない</h4><p>シーンが変わってもこの位置のまま、最初から最後まで撮り切る。</p></li>
+</ol></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"02 画角・構図の基本ルール", title:"技術保護のための撮影ルール", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">施術の技術情報や製品、そして美容師さん自身を守るためのルール。手元のクローズアップは禁止だが、「引き」の画角でパッと見て工程がわからない撮り方なら基本的に問題なし。</p>
+<div class="sg-two sg-stack">
+<div class="sg-col sg-ng"><div class="sg-hh"><span class="sg-badge-ng">NG</span>手元のクローズアップ・接写</div><p>装着・取り外しの結び目や道具の使い方が特定できる手元の接写。スロー再生や倍率を上げて工程が読み取れるカットも同様にNG。</p></div>
+<div class="sg-col sg-ok"><div class="sg-hh"><span class="sg-badge-ok">OK</span>「引き」の画角にとどめる</div><p>手元は背景でぼんやり動く程度に。画面の主役はあくまで美容師の表情・会話。この距離感を守れていれば基本的にOK。</p></div>
+</div>
+<div class="note"><span class="i">i</span><p>カメラは美容師の顔が正面〜斜めに見える位置に置き、手元は画角の端か背景に収める。</p></div>
+<div class="note" style="--ac:#2C9E68;--ac-soft:#E8F4EC;--ac-ink:#1c6642"><span class="i">✓</span><p>カット・カラーなど<b>プルエクステ以外のサロンワークの手元アップは問題なし。</b>技術保護の対象外なので、別の見せ場として活用する。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮る前に", chapter:"03 撮影前に知っておくNG", title:"NGリスト", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-ngtbl">
+<div class="sg-it"><div class="sg-t">🛡️ 技術保護（製品・美容師を守る）</div>
+<div class="sg-r"><span class="sg-badge-ng">NG</span>手元を大きく写す接写、結び方が特定できるクローズアップ</div>
+<div class="sg-r"><span class="sg-badge-ok">OK</span>「引き」の画角にとどめれば基本OK。表情・会話を厚くする</div></div>
+<div class="sg-it"><div class="sg-t">🪞 映り込み</div>
+<div class="sg-r"><span class="sg-badge-ng">NG</span>私物や生活感のあるもの、他のお客様の顔が映り込む</div>
+<div class="sg-r"><span class="sg-badge-ok">OK</span>背景を片付けて情報量を減らし、映り込むものは画角から外す</div></div>
+<div class="sg-it"><div class="sg-t">🔒 同意・プライバシー</div>
+<div class="sg-r"><span class="sg-badge-ng">NG</span>顔出し可否を確認せずに撮る</div>
+<div class="sg-r"><span class="sg-badge-ok">OK</span>毎回顔出し可否を確認し、NGの場合もお客様は普段通り画角に入れて撮り、あとでモザイク処理する</div></div>
+<div class="sg-it"><div class="sg-t">📐 画角・撮影姿勢</div>
+<div class="sg-r"><span class="sg-badge-ng">NG</span>暗すぎる画角、逆光、手ブレの多用</div>
+<div class="sg-r"><span class="sg-badge-ok">OK</span>明るさを確認し、カメラ位置を固定して撮る</div></div>
+<div class="sg-it"><div class="sg-t">✨ 表現・誇張</div>
+<div class="sg-r"><span class="sg-badge-ng">NG</span>Before/Afterの加工・角度変更による過度な誇張</div>
+<div class="sg-r"><span class="sg-badge-ok">OK</span>同アングル・同条件で撮影し、自然な変化を見せる</div></div>
+</div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"✅ チェックリスト", title:"撮影中のチェック", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-cl">
+<label><input type="checkbox">Before／Afterは同じアングル・同じ明るさで撮った</label>
+<label><input type="checkbox">手元は引きの画角にとどめ、技術が特定できるクローズアップになっていない</label>
+<label><input type="checkbox">顔出しNGのお客様も普段通り画角に入れて撮り、美容師が見切れていないか確認した</label>
+<label><input type="checkbox">表情・会話・雑談など、プルエクステに関するカットを撮った</label>
+</div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"04 撮影の流れ", title:"いきなり動画より、まず写真から", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">動画をいきなりお願いすると身構えられやすい。来店してすぐのタイミングで先に写真の許可をもらい、その流れで動画に広げると通りやすい。</p>
+<div class="note"><span class="i">★</span><p><b>ねらい目：自分の動画を見て来店してくれたお客様は、撮影に協力してくれることが多い。最初に来店理由を聞けると、交渉の糸口になる。</b></p></div>
+<div class="sg-subhead">パターン1：スタイル写真から</div>
+<div class="sg-pitch"><div class="sg-q">「今日仕上がったら、お写真だけ撮らせてもらえますか？」</div><div class="sg-ar">▼</div><div class="sg-q sg-b">「もし良ければ、少しだけ動画撮影にご協力いただけませんか？」</div></div>
+<div class="sg-subhead">パターン2：Before/After写真から</div>
+<div class="sg-pitch"><div class="sg-q">「Before/Afterの写真を撮らせてください」</div><div class="sg-ar">▼</div><div class="sg-q sg-b">「動きも伝わるので、もし良ければ動画撮影にもご協力いただけませんか？」</div></div>
+<div class="note" style="--ac:#586074;--ac-soft:#EDEFF3;--ac-ink:#39404f"><span class="i">i</span><p>写真をOKしてもらえた流れなら、動画の提案も自然に聞こえやすい。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"04 撮影の流れ", title:"撮影本番で気をつける基本ルール", blocks:[
+          {type:"html", html:`<div class="sg"><ol class="steps">
+<li><h4>ワンシーンひと続きで撮る</h4><p>撮り直しは最小限に。シーンの途中で不必要に止めない。</p></li>
+<li><h4>シーンごとに録画開始を確認</h4><p>回し始めに録画マークが点灯しているか一目確認してからスタート。</p></li>
+<li><h4>お客様のペースを最優先</h4><p>急かさず、返答や仕草に合わせて自然な間を待つ。</p></li>
+<li><h4>台本通りじゃなくてOK</h4><p>想定外の反応や会話もそのまま活かす。</p></li>
+</ol>
+<div class="note"><span class="i">i</span><p>撮り直したいときも、<b>一度最後まで撮り切ってから</b>撮り直す。自然な流れを優先。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"04 撮影の流れ", title:"自然な空気を作る声かけのコツ", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-rules">
+<div class="sg-row"><div class="sg-h"><b>🗣️ 普段の接客と同じトーンで</b></div><p>インタビュー口調にならないよう、いつも通り話しかける。</p></div>
+<div class="sg-row"><div class="sg-h"><b>🤔 沈黙が続いたら軽い質問を</b></div><p>「今日はこの後お出かけですか？」など、施術に関係ない話題でもOK。</p></div>
+<div class="sg-row"><div class="sg-h"><b>😌 カメラを意識しすぎている様子なら</b></div><p>「大丈夫ですよ、いつも通りで」と一声かけて力を抜いてもらう。</p></div>
+<div class="sg-row"><div class="sg-h"><b>👏 相槌やリアクションは少し大きめに</b></div><p>会話のテンポが伝わりやすくなる。</p></div>
+</div>
+<div class="note"><span class="i">i</span><p>無理に盛り上げようとしなくてOK。お客様が心地よく話せる空気をつくることを優先。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"04 撮影の流れ", title:"基本の流れは4シーン", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">一番スタンダードな流れの一例。具体的な撮り方は「シーン別 撮影ガイド」へ。</p>
+<div class="sg-sflow">
+<div class="sg-c"><small>SCENE 1</small><i>🗒️</i><b>カウンセリング</b></div>
+<div class="sg-c"><small>SCENE 2</small><i>✂️</i><b>施術中の様子</b></div>
+<div class="sg-c"><small>SCENE 3</small><i>🪞</i><b>アフター確認</b></div>
+<div class="sg-c"><small>SCENE 4</small><i>😊</i><b>お客様の感想</b></div>
+</div>
+<div class="note warn"><span class="i">!</span><p>カウンセリングの内容は必ず撮影しておく。会話の素材があると動画が作りやすくなる。</p></div>
+<div class="note"><span class="i">i</span><p>絶対の順番ではなく、あくまで基本の型。迷ったときの土台として、まずこの流れを目安に。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"05 シーン別 撮影ガイド", title:"シーン別：装着編", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 1</span><div><b>カウンセリング</b><small>要望ヒアリング</small></div></div>
+<div class="sg-sb"><div class="sg-say">「今日担当させていただく〇〇です。今日はどんな感じにしていきましょうか？」</div></div></div>
+<div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 2</span><div><b>施術中の様子</b><small>人柄カット</small></div></div>
+<div class="sg-sb"><div class="sg-say">「なんでプル選んでくださったんですか？」</div><div class="sg-pt"><b>POINT</b>　会話・表情から伝わる人柄</div><div class="sg-ngline"><b>NG</b>　手元だけを大きく抜くクローズアップ（禁止）</div></div></div>
+<div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 3</span><div><b>アフター確認</b><small>仕上がり確認</small></div></div>
+<div class="sg-sb"><div class="sg-say">頭を触ってもらいながら「こんな感じでどうですか？気になるところはないですか？」</div><div class="sg-pt"><b>POINT</b>　Before/Afterを比較して見せたい場合は<a class="ilink" data-jsid="shoot" data-jtitle="Before/Afterを魅力的に見せる4つのコツ（装着編・取り外し編 共通）">Before/Afterを魅力的に見せる4つのコツ</a>へ</div></div></div>
+<div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 4</span><div><b>お客様の感想コメント</b></div></div>
+<div class="sg-sb"><div class="sg-say">「いい感じに馴染みましたね」「ぜひ楽しんでください」</div><div class="sg-pt"><b>POINT</b>　スタイルの仕上がりを一緒に喜ぶ会話をメインに</div></div></div>
+<div class="note"><span class="i">i</span><p>カメラ位置は<a class="ilink" data-jsid="shoot" data-jtitle="基本のカメラ位置（全シーン共通・固定）">基本のカメラ位置</a>の通り固定。お客様のペースに合わせて、急かさず自然な間で撮る。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"05 シーン別 撮影ガイド", title:"シーン別：取り外し編", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 1</span><div><b>取り外し前の状態確認</b></div></div>
+<div class="sg-sb"><div class="sg-say">「今日で〇日間つけていただきましたがどうでしたか？」</div></div></div>
+<div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 2</span><div><b>取り外し中の様子</b><small>人柄カット</small></div></div>
+<div class="sg-sb"><div class="sg-say">「生活してて気になることとかありましたか？」</div><div class="sg-pt"><b>POINT</b>　丁寧に扱う空気感を、表情・言葉・所作全体で</div><div class="sg-ngline"><b>NG</b>　結び糸をカットする瞬間の接写</div></div></div>
+<div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 3</span><div><b>地毛の状態確認</b></div></div>
+<div class="sg-sb"><div class="sg-say">「地毛戻りましたね〜」</div></div></div>
+<div class="sg-scene"><div class="sg-sh"><span class="sg-sn">SCENE 4</span><div><b>次回提案・指名への声かけ</b></div></div>
+<div class="sg-sb"><div class="sg-say">「またお待ちしていますね。」</div><div class="sg-pt"><b>POINT</b>　宣伝しすぎない、自然なトーンで話す</div></div></div>
+<div class="note"><span class="i">i</span><p>カメラ位置は固定。手元の接写は禁止し、丁寧な所作で安心感を伝える。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"05 シーン別 撮影ガイド", title:"Before/Afterを魅力的に見せる4つのコツ（装着編・取り外し編 共通）", blocks:[
+          {type:"html", html:`<div class="sg"><ol class="steps">
+<li><h4>同ポジション比較</h4><p>カウンセリング時に映った角度を基準に、Afterも同じアングル・同じ明るさで撮る。</p></li>
+<li><h4>同ポーズ比較</h4><p>カウンセリング時に髪を触った仕草・角度を、Afterでも同じように再現してもらう。</p></li>
+<li><h4>静と動、両方を撮る</h4><p>Afterは静止した状態のカットと、頭を振るなど動きのあるカットの両方を撮っておく。</p></li>
+<li><h4>アングルを1つ増やす</h4><p>正面Afterだけでなく、横 or 後ろからのカットを1つ足すと説得力が増す。</p></li>
+</ol>
+<div class="note warn"><span class="i">!</span><p>加工や角度変更で過度に誇張しない。同アングル・同条件で撮って、自然な変化を見せる。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"06 話し方・見せ方／顔出し対応", title:"話し方・見せ方のポイント", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-fig"><img class="sg-ref" src="images/shoot-6.jpg" alt="参考：カメラ目線ではなく、お客様と自然に会話しながら接客している様子"><div class="sg-cap">お客様と自然に話している様子が撮れればOK</div></div>
+<ol class="steps">
+<li><h4>目線：カメラ目線は必須じゃない</h4><p>無理に画面へ語りかけようとすると、かえってお客様への接客が不自然・不誠実に見えてしまう。普段通り、お客様や鏡越しに自然な目線で接客している様子が撮れればOK。</p></li>
+<li><h4>伝え方：専門用語は言い換える</h4><p>その場で簡単な言葉に言い換える。プルエクステの良さが伝わる一言を添えると信頼につながる。</p></li>
+<li><h4>表情：少し口角を上げる</h4><p>テンションを上げる必要はない。少し口角を上げるだけで明るい印象になり、好感度も上がりやすい。</p></li>
+</ol>
+<div class="note"><span class="i">i</span><p>台本通りに読み上げるのではなく、普段の接客トーンのまま話すと自然に伝わる。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"06 話し方・見せ方／顔出し対応", title:"人柄が伝わるカットのアイデア", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">台本通りに話すより、素の反応が伝わる瞬間を拾うことを意識する。</p>
+<ul class="sg-bullets">
+<li><i>😄</i>施術中の雑談や、お客様とのちょっとした掛け合い・笑いのツボ</li>
+<li><i>🗣️</i>「なぜこの技術・素材を選んだか」「こだわっているポイント」を自分の言葉で語るシーン</li>
+<li><i>✨</i>真剣な表情から、ふっと表情が緩む瞬間などの“ギャップ”</li>
+<li><i>📖</i>担当した実例や、ちょっとした失敗談・工夫談など、人柄が伝わるエピソードトーク</li>
+<li><i>🤝</i>お客様への気配り（体勢の確認、寒くないか等の声かけ）が自然に映るシーン</li>
+</ul></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"06 話し方・見せ方／顔出し対応", title:"顔出し可否の確認と、NGの場合の配慮", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-subhead">① 顔出し可否を確認する</div>
+<div class="sg-pitch"><div class="sg-q">「お顔を出しても大丈夫ですか？」</div><div class="sg-q" style="font-size:12.3px;color:var(--ink2)">迷うようなら「モザイクをかければ大丈夫ですか？」も聞いてみる</div></div>
+<div class="sg-subhead">② 配慮を伝える（NGの場合）</div>
+<div class="sg-pitch"><div class="sg-q sg-b">「かしこまりました。後ほどモザイクを入れますので、そのまま普段通り撮影させてくださいね」</div></div>
+<div class="note warn"><span class="i">!</span><p>「顔出しOK」でも、当日の気分や、撮影中・撮影後に気持ちが変わることがある。</p></div>
+<div class="note"><span class="i">i</span><p><b>顔出しNGでも撮影はできる（顔はあとでモザイクで隠せる）。</b>一度断られても、モザイク対応できることを伝えて、もう一度だけ撮影をお願いしてみよう。</p></div></div>`}
+        ]},
+        {type:"acc", group:"撮影本番", chapter:"06 話し方・見せ方／顔出し対応", title:"顔出しNG（モザイク予定）の場合の撮り方", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">顔が映る通常の画角で撮るのが基本。顔出しNGはあくまで例外対応で、その場合だけ撮り方を少し工夫する。</p>
+<ol class="steps">
+<li><h4>お客様は普段通り画角に入れる</h4><p>モザイクは後で処理するので、撮影時にお客様を画角から外したり隠したりする必要はない。</p></li>
+<li><h4>顔は後でモザイクをかけて隠す</h4><p>撮影はそのまま、普段通りに進める。</p></li>
+<li><h4>美容師も画角にしっかり収める</h4><p>顔出しNGの場合は特に、美容師の顔まで画角に入っているかをその都度チェック。</p></li>
+</ol>
+<div class="note warn"><span class="i">!</span><p>撮影の時点で、美容師が画角の中でしっかり見える位置に収まっているかを必ず確認する。</p></div></div>`}
+        ]},
+        {type:"acc", group:"投稿まで", chapter:"✅ チェックリスト", title:"投稿前のチェック", blocks:[
+          {type:"html", html:`<div class="sg"><div class="sg-cl">
+<label><input type="checkbox">動画内容の最終確認ができている</label>
+<label><input type="checkbox">顔出しNGのお客様が映るカットに、モザイク処理が漏れなくかかっている</label>
+</div></div>`}
+        ]},
+        {type:"acc", group:"投稿まで", chapter:"07 投稿のコツ", title:"① 投稿の前に：プロフィールを整える", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">動画を見て「この人いいな」と思った人が最初に見るのがプロフィール。ここで指名につながるかが決まる。</p>
+<ul class="sg-bullets">
+<li><i>👤</i>名前・サロン名・エリア（最寄り駅など）</li>
+<li><i>✨</i>「プルエクステが得意」など、何をお願いできる人かを一言で</li>
+<li><i>🔗</i>予約リンク・指名方法（投稿文にリンクを貼れないSNSもあるので、プロフィールに置く）</li>
+</ul></div>`}
+        ]},
+        {type:"acc", group:"投稿まで", chapter:"07 投稿のコツ", title:"② 投稿するとき", blocks:[
+          {type:"html", html:`<div class="sg"><ol class="steps">
+<li><h4>投稿文は1行目が勝負</h4><p>1行目にBefore→Afterや、お客様の悩みを書く（例：「毛量が少なくても自然にロングへ」）。その下にスタイリスト名・サロン名・指名方法を入れる。</p></li>
+<li><h4>ハッシュタグは「施術名・エリア・サロン名」</h4><p>例：#プルエクステ　#サロン名　#エリア</p><div class="sg-pt"><b>POINT</b>　ハッシュタグは5つ以内に抑える</div></li>
+<li><h4>見られやすい時間に投稿 <span class="sg-rec">推奨</span></h4><p>お昼休みや夜など、お客様がスマホを見る時間帯が目安。反応を見ながら自分に合う時間を見つける。</p></li>
+</ol>
+<div class="note warn"><span class="i">!</span><p>「#美容師と繋がりたい」のような美容師向けのタグは、同業者には届くがお客様には届きにくい。<b>集客が目的なら、お客様が検索しそうな言葉を選ぶ。</b></p></div></div>`}
+        ]},
+        {type:"acc", group:"投稿まで", chapter:"07 投稿のコツ", title:"③ 投稿した後", blocks:[
+          {type:"html", html:`<div class="sg"><ol class="steps">
+<li><h4>コメントには早めに返信</h4><p>料金・持ち・お手入れなどの質問には丁寧に答え、最後は予約リンクや指名方法に案内する。</p></li>
+<li><h4>お客様の情報は書かない</h4><p>コメント欄でも、映っているお客様の名前や来店日などは出さない。否定的なコメントには反論しない。</p><div class="sg-pt"><b>POINT</b>　インフルエンサーや影響力がある人の場合は、本人の許可をとってメンションすると再生数増加につながりやすい</div></li>
+<li><h4>定期的な投稿を続ける</h4><p>1本でバズを狙うより、続けて投稿するほうが指名につながりやすい。反応を見ながらペースを調整する。</p></li>
+</ol>
+<div class="note"><span class="i">i</span><p>保存数・コメント数など<b>反応の良かった切り口を振り返り</b>、次回の撮影内容に活かすと指名獲得につながりやすい。</p></div></div>`}
+        ]},
+        {type:"acc", group:"投稿まで", chapter:"07 投稿のコツ", title:"編集依頼・投稿URLの報告", blocks:[
+          {type:"html", html:`<div class="sg"><p class="sg-txt">編集代行の対象素材・依頼方法・投稿先・URLの報告手順は「動画編集を依頼」で確認。</p><div class="jumpwrap"><button class="jumpbtn" data-jsid="edit" data-jtitle="">「動画編集を依頼」を開く<span class="jb-go">›</span></button></div></div>`}
+        ]}
+      ]},
     { id:"register", icon:"🚀", accent:"slate", label:"アプリの登録方法", sub:"インストール・ログイン",
       blocks:[
         {type:"lead", text:"アプリをインストールして、ログインするだけ。2ステップで完了です。"},
@@ -740,18 +1107,18 @@ function shotHtml(b){
   const cap=T(b.tidCap,b.cap);
   return `<div class="shot-wrap"><div class="shot"><img src="${b.img}" alt="操作画面">${pins}</div>${cap?`<div class="shot-cap">${esc(cap)}</div>`:''}</div>${leg?`<div class="legend">${leg}</div>`:''}`;
 }
-function jumpBtn(j){ return `<button class="jumpbtn" data-jsid="${esc(j.sid)}" data-jtitle="${esc(j.title)}">${esc(j.label)}<span class="jb-go">›</span></button>`; }
+function jumpBtn(j){ return `<button class="jumpbtn${j.big?' big':''}" data-jsid="${esc(j.sid)}" data-jtitle="${esc(j.title)}">${esc(j.label)}<span class="jb-go">›</span></button>`; }
 function jumpTo(sid,title){
   const s=CONTENT.services.find(x=>x.id===sid); if(!s) return;
   const ai=orderedAccs(s).findIndex(a=>a.title===title);
   openSearchResult(sid, ai);
 }
-document.addEventListener('click',e=>{ const j=e.target.closest('.jumpbtn'); if(j){ e.preventDefault(); jumpTo(j.dataset.jsid,j.dataset.jtitle); } });
+document.addEventListener('click',e=>{ const j=e.target.closest('[data-jsid]'); if(j){ e.preventDefault(); jumpTo(j.dataset.jsid,j.dataset.jtitle); } });
 function block(b){
   if(b.type==="html") return b.html;
   if(b.type==="lead") return `<p class="lead">${esc(T(b.tid,b.text))}</p>`;
   if(b.type==="note") return `<div class="note ${b.tone==='warn'?'warn':''}"><span class="i">${b.tone==='warn'?'!':'i'}</span>${b.jump?`<div class="nb"><p>${esc(T(b.tid,b.text))}</p>${jumpBtn(b.jump)}</div>`:`<p>${esc(T(b.tid,b.text))}</p>`}</div>`;
-  if(b.type==="jump") return `<div class="jumpwrap">${jumpBtn(b)}</div>`;
+  if(b.type==="jump") return `<div class="jumpwrap">${b.href?`<a class="jumpbtn" href="${esc(b.href)}">${esc(b.label)}<span class="jb-go">›</span></a>`:jumpBtn(b)}</div>`;
   if(b.type==="subhead") return `<div class="subhead">${esc(b.text)}</div>`;
   if(b.type==="linkbtn") return `<a class="linkbtn" href="${esc(b.href)}" target="_blank" rel="noopener">${esc(b.label)}</a>`;
   if(b.type==="qr") return `<div class="qrbox"><img src="${b.img}" alt="QRコード">${b.cap?`<small>${esc(b.cap)}</small>`:''}</div>`;
@@ -771,7 +1138,7 @@ function block(b){
 
 function renderHome(){
   const c=CONTENT;
-  const cards=c.services.map(s=>`
+  const cards=c.services.filter(s=>!s.hidden).map(s=>`
     <button class="card ${s.stub?'stub':''}" data-id="${s.id}" data-accent="${s.accent}">
       <span class="chip">${s.icon}</span>
       <span class="tx"><h3>${esc(s.label)}</h3><small>${esc(s.sub)}</small></span>
@@ -824,7 +1191,7 @@ function renderBody(s){
   if(tabs.length>1){
     html+=`<div class="tabwrap"><div class="tabs">`+tabs.map((g,i)=>`<button class="tab${i===0?' on':''}" data-tab="${esc(g)}">${esc(g)}</button>`).join('')+`</div></div>`;
     tabs.forEach((g,i)=>{ const items=accs.filter(a=>a.group===g);
-      html+=`<div class="tabpanel${i===0?' on':''}" data-panel="${esc(g)}">`+items.map(block).join('')+`</div>`; });
+      html+=`<div class="tabpanel${i===0?' on':''}" data-panel="${esc(g)}">`+items.map((a,k)=>(a.chapter&&(k===0||items[k-1].chapter!==a.chapter)?`<div class="chap">${esc(a.chapter)}</div>`:'')+block(a)).join('')+`</div>`; });
   } else { html+=accs.map(block).join(''); }
   return html;
 }
@@ -894,6 +1261,7 @@ function accText(b){
     else if(x.type==='carousel'){ (x.items||[]).forEach(it=>{ if(it.cap)t.push(it.cap); (it.legend||[]).forEach(l=>t.push(l.h+' '+l.p)); }); }
     else if(x.type==='qr'&&x.cap) t.push(x.cap);
     else if(x.type==='linkbtn') t.push(x.label);
+    else if(x.type==='html') t.push(x.html.replace(/<[^>]+>/g,' ').replace(/\s+/g,' '));
   });
   return t.join(' ');
 }
