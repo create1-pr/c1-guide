@@ -448,7 +448,7 @@ const IMG = {
   taskPicker: "images/task-picker.jpg",    // ファイル選択（モザイク）
   taskFiles: "images/task-files.jpg",    // 課題提出（添付後）
   promo1: "images/promo-1.jpg", promo2: "images/promo-2.jpg", promo3: "images/promo-3.jpg", promo4: "images/promo-4.jpg",
-  promo5: "images/promo-5.jpg",
+  promo5: "images/promo-5.jpg", promoStudio: "images/promo-studio.jpg",
   gekkan1: "images/gekkan-1.jpg", gekkan2: "images/gekkan-2.jpg",
   editUploading: "images/edit-uploading.jpg", editChatDone: "images/edit-chat-done.jpg", editSharePrep: "images/edit-share-prep.jpg", editShareSheet: "images/edit-share-sheet.jpg"
 };
@@ -776,19 +776,22 @@ const CONTENT = {
           {type:"carousel", items:[
             {img:IMG.promo1, cap:"プロフィール",
               pins:[{n:1,x:93,y:11}],
-              legend:[{n:1,h:"右上の三本線をタップ",p:"TikTokの自分のプロフィール画面から、メニューを開きます。"}]},
+              legend:[{n:1,h:"TikTokのプロフィール画面からメニューを開く",p:""}]},
             {img:IMG.promo2, cap:"メニュー",
-              pins:[{n:2,x:50,y:48}],
-              legend:[{n:2,h:"「プロモート」をタップ",p:"「作成とビジネスのツール」の中にあります。"}]},
+              pins:[{n:2,x:80,y:44}],
+              legend:[{n:2,h:"「TikTok Studio」をタップ",p:"「作成とビジネスのツール」の中にあります。"}]},
+            {img:IMG.promoStudio, cap:"TikTok Studio",
+              pins:[{n:3,x:42,y:72}],
+              legend:[{n:3,h:"下にスクロールし「プロモート」をタップ",p:"「More Tools」の中にあります。"}]},
             {img:IMG.promo3, cap:"マイプロモート",
-              pins:[{n:3,x:50,y:76}],
-              legend:[{n:3,h:"「リクエスト」をタップ",p:"「マイプロモート」タブ →「その他の機能」の中にあります。"}]},
+              pins:[{n:4,x:75,y:78.5}],
+              legend:[{n:4,h:"「リクエスト」をタップ",p:"「マイプロモート」タブ →「その他の機能」の中にあります。"}]},
             {img:IMG.promo4, cap:"リクエスト",
-              pins:[{n:4,x:50,y:21}],
-              legend:[{n:4,h:"「プロモーションの設定」をタップ",p:"あなたをプロモートできるユーザーを選ぶ画面へ。"}]},
+              pins:[{n:5,x:60,y:21}],
+              legend:[{n:5,h:"「プロモーションの設定」をタップ",p:""}]},
             {img:IMG.promo5, cap:"設定",
-              pins:[{n:5,x:92,y:33}],
-              legend:[{n:5,h:"「すべてのユーザーに許可」を選択",p:"これでC1側からプロモート依頼ができるようになります。"}]}
+              pins:[{n:6,x:92,y:33}],
+              legend:[{n:6,h:"「すべてのユーザーに許可」を選択",p:"これでC1側からプロモート設定ができるようになります。"}]}
           ]}
         ]},
         {type:"acc", group:"履歴", nav:"履歴確認", title:"残高・履歴の確認", blocks:[
@@ -1103,7 +1106,7 @@ const HOMEIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 
 function shotHtml(b){
   const pins=(b.pins||[]).map(p=>`<span class="pin" style="left:${p.x}%;top:${p.y}%">${p.n}</span>`).join('');
-  const leg=(b.legend||[]).map(l=>`<div class="li"><span class="num">${l.n}</span><div><h4>${esc(T(l.tidH,l.h))}</h4><p>${esc(T(l.tidP,l.p))}</p></div></div>`).join('');
+  const leg=(b.legend||[]).map(l=>`<div class="li"><span class="num">${l.n}</span><div><h4>${esc(T(l.tidH,l.h))}</h4>${l.p?`<p>${esc(T(l.tidP,l.p))}</p>`:''}</div></div>`).join('');
   const cap=T(b.tidCap,b.cap);
   return `<div class="shot-wrap"><div class="shot"><img src="${b.img}" alt="操作画面">${pins}</div>${cap?`<div class="shot-cap">${esc(cap)}</div>`:''}</div>${leg?`<div class="legend">${leg}</div>`:''}`;
 }
