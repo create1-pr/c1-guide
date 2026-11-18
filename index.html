@@ -422,7 +422,7 @@ mark{background:#FCE39C;color:inherit;border-radius:3px;padding:0 1px;font-weigh
    ・ピン：x,y は画像に対する％（左上が0,0 / 右下が100,100）
    ============================================================ */
 const IMG = {
-  urlReport: "images/url-report.jpg",         // 投稿動画共有（URL報告）
+  urlReport: "images/url-report.jpg",         // SNS › 投稿を申請（URL報告）
   myPage: "images/mypage.jpg",          // マイページ
   ptScreen: "images/point-screen.jpg",        // ポイント画面
   ptExchangeAmazon: "images/exchange-amazon.jpg",// Amazonギフト券交換
@@ -431,11 +431,11 @@ const IMG = {
   qrIos: "images/qr-ios.png",             // iOS App Store QR
   qrAnd: "images/qr-android.png",             // Android Play Store QR
   login: "images/login.jpg",           // ログイン画面
-  editDash: "images/edit-dashboard.jpg",     // ダッシュボード（新規タスク）
+  editDash: "images/sns-edit.jpg",     // SNS › 編集を依頼（一覧・完了）
   editRequest: "images/edit-request.jpg",   // 新規リクエスト（動画アップロード）
   editUpload: "images/edit-upload.jpg",     // 動画のアップロード
   editProgress: "images/edit-progress.jpg",  // 制作中の動画（進捗）
-  editDone: "images/edit-done.jpg",      // 完了ステータス
+  editDone: "images/sns-edit.jpg",      // 完了ステータス
   ptRanking: "images/point-ranking.jpg",       // ポイントランキング
   currLevels: "images/curr-levels.jpg",      // 技術カリキュラム レベル一覧
   currList: "images/curr-list.jpg",      // 入門レベル 実施画面
@@ -461,11 +461,11 @@ const CONTENT = {
         {type:"html", html:`<details class="cue" open><summary>こんなお悩みは？<span class="cv">▼</span></summary><div class="worry"><div class="wrow"><span class="we">😥</span><div><b>先輩の教える時間がない</b><p>施術で忙しく、新人指導に十分な時間を割けない。</p></div></div><div class="wrow"><span class="we">📋</span><div><b>カリキュラムが整っていない</b><p>無い・更新されていない、というサロンも多い。</p></div></div><div class="wrow"><span class="we">📊</span><div><b>教育基準がバラバラ</b><p>デビューの早さや技術レベルが人によって大きく異なる。</p></div></div><div class="solve"><b>技術取得サポートで、3つの悩みを解決</b><p>先輩がつきっきりで教える必要がありません。<br>分からない点はテクニカル部が直接サポートします。<br>サロン内だけでなく、メーカーの基準で技術を確認できます。</p></div></div></details>`},
         {type:"lead", text:"動画視聴・クイズ・課題提出で技術を学び、ディプロマ取得を目指します。"},
         {type:"acc", group:"使い方", title:"① カリキュラムを開く", blocks:[
-          {type:"lead", text:"下タブ「依頼・相談」から技術カリキュラムを開き、レベルを選びます。"},
+          {type:"lead", text:"下タブ「技術」から、受講したいレベルを選びます。"},
           {type:"note", text:"【入門】は一覧の順番通りにしか受講できません。【基礎・応用・エキスパート】は必要な部分のみ選んで受講できます。"},
           {type:"carousel", items:[
             {img:IMG.currLevels, cap:"技術カリキュラム（レベル一覧）",
-              pins:[{n:1,x:30,y:30}],
+              pins:[{n:1,x:60,y:26.5}],
               legend:[{n:1,h:"レベルを選ぶ",p:"実施したいレベルをタップ。"}]},
             {img:IMG.currList, cap:"進捗・次の受講案内・カリキュラム一覧",
               pins:[{n:1,x:85,y:51.5}],
@@ -516,9 +516,9 @@ const CONTENT = {
         {type:"acc", group:"使い方", title:"⑤ 進捗を確認する（技術カルテ）", blocks:[
           {type:"lead", text:"「技術カルテ」で進捗状況が一目でわかります。"},
           {type:"carousel", items:[
-            {img:IMG.currLevels, cap:"下タブ「依頼・相談」→「技術カルテ」",
-              pins:[{n:1,x:50,y:78}],
-              legend:[{n:1,h:"「技術カルテ」をタップ",p:"下タブ「依頼・相談」→「技術カルテ」の順にタップ。"}]},
+            {img:IMG.currLevels, cap:"下タブ「技術」→「技術カルテ」",
+              pins:[{n:1,x:75,y:74.6}],
+              legend:[{n:1,h:"「技術カルテ」をタップ",p:"「技術」画面の下にある「技術カルテ」をタップ。"}]},
             {img:IMG.currKarte, cap:"進捗・全国ランキング",
               pins:[{n:1,x:40,y:40}],
               legend:[{n:1,h:"進捗と順位を確認",p:"各カリキュラムの進捗状況・全国ランキングが見られます。"}]}
@@ -551,8 +551,8 @@ const CONTENT = {
         {type:"acc", group:"使い方", nav:"報告", tid:"sns.report.title", title:"使い方：投稿URLの報告", blocks:[
           {type:"note", text:"ポイントの対象になる動画は『詳細』タブから確認できます。"},
           {type:"lead", tid:"sns.report.lead", text:"投稿したら、アプリで動画URLを報告するだけ。2ステップで完了です。"},
-          {type:"shot", img:IMG.urlReport, cap:"画面下の「投稿動画共有」タブから開けます", tidCap:"sns.report.cap",
-            pins:[{n:1,x:50,y:34},{n:2,x:50,y:44.5}],
+          {type:"shot", img:IMG.urlReport, cap:"下タブ「SNS」から開けます", tidCap:"sns.report.cap",
+            pins:[{n:1,x:50,y:40.7},{n:2,x:80,y:52.9}],
             legend:[
               {n:1,h:"URLを貼り付け", tidH:"sns.report.l1h", p:"投稿した動画のURLを「動画URL」欄に貼り付けます。", tidP:"sns.report.l1p"},
               {n:2,h:"「共有する」をタップ", tidH:"sns.report.l2h", p:"タップで申請完了。ポイントが付与されます。", tidP:"sns.report.l2p"}
@@ -598,14 +598,14 @@ const CONTENT = {
         {type:"jump", big:true, sid:"shoot", title:"機材リスト", label:"🎥 撮影前に撮り方ガイドをチェック"},
         {type:"acc", group:"使い方", title:"① 依頼する（動画アップロード）", blocks:[
           {type:"note", text:"先に『詳細』タブのサービス詳細を確認してください。"},
-          {type:"lead", text:"「依頼・相談」タブの新規タスクから「動画アップロード」を選びます。"},
+          {type:"lead", text:"下タブ「SNS」→ 上部の「編集を依頼」を開き、「＋ 編集を依頼」から「動画アップロード」を選びます。"},
           {type:"carousel", items:[
-            {img:IMG.editDash, cap:"「依頼・相談」タブ →「＋ 新規タスク」",
-              pins:[{n:1,x:78,y:88}],
-              legend:[{n:1,h:"「＋ 新規タスク」をタップ",p:"画面右下のボタンから。"}]},
+            {img:IMG.editDash, cap:"下タブ「SNS」→ 上部の「編集を依頼」",
+              pins:[{n:1,x:61,y:83.8}],
+              legend:[{n:1,h:"「＋ 編集を依頼」をタップ",p:"画面右下のボタンから。"}]},
             {img:IMG.editRequest, cap:"新規リクエスト",
-              pins:[{n:1,x:50,y:88}],
-              legend:[{n:1,h:"「動画アップロード」を選択",p:"素材動画の編集依頼です。"}]}
+              pins:[{n:2,x:85,y:85.6}],
+              legend:[{n:2,h:"「動画アップロード」を選択",p:"素材動画の編集依頼です。"}]}
           ]}
         ]},
         {type:"acc", group:"使い方", title:"② 動画をアップロード", blocks:[
@@ -628,13 +628,13 @@ const CONTENT = {
           {type:"note", text:"素材を入れ忘れた、誤った素材を送ってしまったなど、お困りの際は担当営業までお問い合わせください。"}
         ]},
         {type:"acc", group:"使い方", title:"③ 進捗を確認", blocks:[
-          {type:"lead", text:"アップロード後は「制作中の動画」で状況を確認できます。"},
+          {type:"lead", text:"アップロード後は、下タブ「SNS」→ 上部の「編集を依頼」の「制作中の動画」で状況を確認できます。"},
           {type:"carousel", items:[
             {img:IMG.editProgress, cap:"制作中は「進行中」",
-              pins:[{n:1,x:30,y:33}],
+              pins:[{n:1,x:56,y:34.2}],
               legend:[{n:1,h:"制作中は「進行中」",p:"制作が進むと「進行中」と表示されます。"}]},
             {img:IMG.editDone, cap:"完成すると「完了」",
-              pins:[{n:1,x:30,y:33}],
+              pins:[{n:1,x:56,y:34.2}],
               legend:[{n:1,h:"完成したら「完了」",p:"完成すると「完了」と表示されます。"}]}
           ]}
         ]},
@@ -642,8 +642,8 @@ const CONTENT = {
           {type:"lead", text:"完成した動画を受け取って、TikTok・YouTubeに投稿します。"},
           {type:"note", tone:"warn", text:"完成した動画は90日を過ぎると削除されます。完成したら早めに投稿してください。"},
           {type:"carousel", items:[
-            {img:IMG.editDone, cap:"完了した動画をタップ",
-              pins:[{n:1,x:80,y:33}],
+            {img:IMG.editDone, cap:"下タブ「SNS」→ 上部の「編集を依頼」",
+              pins:[{n:1,x:80,y:32.2}],
               legend:[{n:1,h:"タップして開く",p:"「完了」になった動画をタップします。"}]},
             {img:IMG.editChatDone, cap:"編集完了・添付動画",
               pins:[{n:2,x:66,y:66}],
@@ -702,7 +702,7 @@ const CONTENT = {
             ["編集代行で作った動画","対象外（URL報告は必要）"],
             ["自分で作った動画","対象（1本100pt）"]
           ]},
-          {type:"note", text:"報告は「投稿動画共有」から。操作は共通です。"}
+          {type:"note", text:"報告は下タブ「SNS」から。操作は共通です。"}
         ]}
       ]},
     { id:"gekkan", icon:"📰", accent:"slate", label:"読むだけでポイントGET", sub:"月刊品保",
@@ -711,7 +711,7 @@ const CONTENT = {
         {type:"acc", group:"使い方", title:"① 月刊品保を開く", blocks:[
           {type:"lead", text:"下部メニューの「月刊品保」を開くと、最新のレポートが表示されます。"},
           {type:"shot", img:IMG.gekkan1, cap:"最新のレポート",
-            pins:[{n:1,x:64,y:38}],
+            pins:[{n:1,x:88,y:36.4}],
             legend:[{n:1,h:"「レポートを読む」をタップ",p:"最新号のレポートが開きます。"}]}
         ]},
         {type:"acc", group:"使い方", title:"② レポートを読む", blocks:[
@@ -737,7 +737,7 @@ const CONTENT = {
         {type:"lead", text:"ポイントの確認・履歴・交換はすべて「ポイント」画面から。毎月の交換可能額は¥50,000まで（Amazon・プロモート共通）。"},
         {type:"acc", group:"ページ", nav:"開き方", title:"ポイント画面の開き方", blocks:[
           {type:"shot", img:IMG.myPage, cap:"マイページ →「ポイント」",
-            pins:[{n:1,x:88,y:96},{n:2,x:50,y:31}],
+            pins:[{n:1,x:87.4,y:92.8},{n:2,x:50,y:28.7}],
             legend:[
               {n:1,h:"「マイページ」を開く",p:"画面下部・右の「マイページ」をタップ。"},
               {n:2,h:"「ポイント」をタップ",p:"上部の「ポイント（残高・履歴・交換申請）」を開きます。"}
